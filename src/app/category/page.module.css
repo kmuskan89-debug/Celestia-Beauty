@@ -1,0 +1,333 @@
+.layout {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 2.5rem 2rem 5rem;
+}
+
+.breadcrumbs {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--celestia-gray);
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.breadcrumbsLink {
+  color: var(--celestia-gray);
+  text-decoration: none;
+  transition: var(--transition-fast);
+}
+
+.breadcrumbsLink:hover {
+  color: var(--celestia-sunset-orange);
+}
+
+.titleSection {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.pageTitle {
+  font-family: var(--font-serif);
+  font-size: 2.25rem;
+  font-weight: 800;
+  color: var(--celestia-sunset-orange);
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.mainContent {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+@media (min-width: 1024px) {
+  .mainContent {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 2.5rem;
+  }
+}
+
+.sidebar {
+  width: 100%;
+  background-color: var(--celestia-cream-peach);
+  border: 1px solid var(--celestia-light-gray);
+  border-radius: 20px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+@media (min-width: 1024px) {
+  .sidebar {
+    width: 290px;
+    flex-shrink: 0;
+    position: sticky;
+    top: 145px; /* Sits below header and category subnavbar */
+  }
+}
+
+.filterGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.filterTitle {
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--celestia-charcoal);
+  border-bottom: 1px solid var(--celestia-light-gray);
+  padding-bottom: 0.5rem;
+  margin: 0;
+}
+
+.priceRangeContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.priceLabel {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--celestia-charcoal);
+}
+
+.rangeInput {
+  width: 100%;
+  accent-color: var(--celestia-sunset-orange);
+  cursor: pointer;
+}
+
+.checkboxLabel {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--celestia-charcoal);
+  cursor: pointer;
+  user-select: none;
+}
+
+.checkboxInput {
+  accent-color: var(--celestia-sunset-orange);
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.catalogSection {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.catalogHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--celestia-light-gray);
+  padding-bottom: 0.75rem;
+}
+
+.productCount {
+  font-size: 0.85rem;
+  color: var(--celestia-gray);
+  font-weight: 700;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+}
+
+@media (min-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.75rem;
+  }
+}
+
+.noProducts {
+  text-align: center;
+  padding: 5rem 2rem;
+  color: var(--celestia-gray);
+  font-size: 1rem;
+  font-weight: 700;
+  background-color: var(--celestia-cream-peach);
+  border-radius: 20px;
+  border: 1px dashed var(--celestia-light-gray);
+}
+
+/* Product Card Styling */
+.card {
+  background-color: var(--celestia-pearl-white);
+  border-radius: 16px;
+  border: 1px solid var(--celestia-light-gray);
+  overflow: hidden;
+  transition: var(--transition-smooth);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-subtle);
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-medium);
+  border-color: var(--celestia-soft-peach);
+}
+
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background-color: var(--celestia-cream-peach);
+  overflow: hidden;
+}
+
+.image {
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.card:hover .image {
+  transform: scale(1.05);
+}
+
+.wishlistBtn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: var(--transition-smooth);
+}
+
+.wishlistBtn:hover {
+  transform: scale(1.1);
+  background-color: var(--celestia-pearl-white);
+}
+
+.wishlistIcon {
+  color: var(--celestia-sunset-orange);
+  transition: var(--transition-fast);
+}
+
+.info {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex-grow: 1;
+}
+
+.ratingContainer {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.stars {
+  display: flex;
+  color: #fbbf24;
+  gap: 2px;
+}
+
+.reviewsCount {
+  font-size: 0.75rem;
+  color: var(--celestia-gray);
+  margin-left: 0.25rem;
+}
+
+.name {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--celestia-charcoal);
+  margin: 0;
+  line-height: 1.3;
+  transition: var(--transition-fast);
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.card:hover .name {
+  color: var(--celestia-sunset-orange);
+}
+
+.details {
+  font-size: 0.8rem;
+  color: var(--celestia-gray);
+  line-height: 1.4;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  height: 2.2em;
+}
+
+.cardFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+  padding-top: 0.5rem;
+}
+
+.price {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--celestia-sunset-orange);
+}
+
+.addToCartBtn {
+  background: none;
+  border: 1px solid var(--celestia-sunset-orange);
+  color: var(--celestia-sunset-orange);
+  padding: 0.4rem 0.8rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.addToCartBtn:hover {
+  background-color: var(--celestia-sunset-orange);
+  color: white;
+}
