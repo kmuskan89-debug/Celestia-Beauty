@@ -12,7 +12,7 @@ interface FAQItem {
 const FAQ_ITEMS: FAQItem[] = [
   {
     question: "How long does shipping take?",
-    answer: "Standard domestic shipping takes 3-5 business days. Express shipping takes 1-2 business days. Free standard shipping is automatically applied to all orders over $50.",
+    answer: "Standard domestic shipping takes 3-5 business days. Express shipping takes 1-2 business days. Free standard shipping is automatically applied to all orders above ₹499.",
   },
   {
     question: "What is your return policy?",

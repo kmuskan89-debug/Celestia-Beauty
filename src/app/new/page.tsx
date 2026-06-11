@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import styles from "./page.module.css";
+import { useCart } from "../../context/CartContext";
 
 interface Product {
   id: number;
@@ -32,7 +33,7 @@ export default function NewLaunchesPage() {
           id: 101,
           name: "Vitamin C + E Glow Moisturizer",
           details: "Lightweight cream loaded with triple vitamin C and hydration lock.",
-          price: "$18.00",
+          price: "₹1,440",
           rating: 5,
           reviews: 145,
           image: "/product.png",
@@ -41,7 +42,7 @@ export default function NewLaunchesPage() {
           id: 102,
           name: "Watermelon SPF 50 Matte Gel",
           details: "Broad-spectrum sunscreen gel with cooling watermelon extracts.",
-          price: "$20.00",
+          price: "₹1,600",
           rating: 5,
           reviews: 94,
           image: "/product.png",
@@ -50,7 +51,7 @@ export default function NewLaunchesPage() {
           id: 103,
           name: "Barrier Repair Hydrating Face Wash",
           details: "Sulfate-free creamy cleanser with 5 essential ceramides.",
-          price: "$14.00",
+          price: "₹1,120",
           rating: 4,
           reviews: 82,
           image: "/product.png",
@@ -59,7 +60,7 @@ export default function NewLaunchesPage() {
           id: 104,
           name: "10% Niacinamide Clearing Serum",
           details: "Spot correction treatment with cica extracts for clear skin.",
-          price: "$22.00",
+          price: "₹1,760",
           rating: 5,
           reviews: 105,
           image: "/product.png",
@@ -75,7 +76,7 @@ export default function NewLaunchesPage() {
           id: 201,
           name: "Ultime Pro HD Matte Lipstick",
           details: "High-definition velvet smooth matte lipstick with 12hr wear.",
-          price: "$15.00",
+          price: "₹1,200",
           rating: 5,
           reviews: 110,
           image: "/product.png",
@@ -84,7 +85,7 @@ export default function NewLaunchesPage() {
           id: 202,
           name: "Comfy Matte Pro Liquid Lip",
           details: "Transfer-proof liquid color infused with almond oil nourishment.",
-          price: "$12.00",
+          price: "₹960",
           rating: 4,
           reviews: 78,
           image: "/product.png",
@@ -93,7 +94,7 @@ export default function NewLaunchesPage() {
           id: 203,
           name: "Magneteyes Liquid Eyeliner",
           details: "Waterproof glossy black eyeliner for a bold dramatic gaze.",
-          price: "$9.00",
+          price: "₹720",
           rating: 5,
           reviews: 230,
           image: "/product.png",
@@ -102,7 +103,7 @@ export default function NewLaunchesPage() {
           id: 204,
           name: "Peaches N Cream Tinted Cream",
           details: "Glow-enhancing tinted moisturizer with vitamin E properties.",
-          price: "$16.00",
+          price: "₹1,280",
           rating: 4,
           reviews: 64,
           image: "/product.png",
@@ -118,7 +119,7 @@ export default function NewLaunchesPage() {
           id: 301,
           name: "Super Stay Vinyl Ink Liquid Lip",
           details: "Shine-finish liquid lipstick with longwear transfer-proof technology.",
-          price: "$14.00",
+          price: "₹1,120",
           rating: 5,
           reviews: 340,
           image: "/product.png",
@@ -127,7 +128,7 @@ export default function NewLaunchesPage() {
           id: 302,
           name: "Lash Sensational Sky High Mascara",
           details: "Infinite length and volume mascara featuring a flexible tower brush.",
-          price: "$13.00",
+          price: "₹1,040",
           rating: 5,
           reviews: 450,
           image: "/product.png",
@@ -136,7 +137,7 @@ export default function NewLaunchesPage() {
           id: 303,
           name: "Fit Me Matte Liquid Foundation",
           details: "Pore-minimising natural finish liquid foundation for normal/oily skin.",
-          price: "$11.00",
+          price: "₹880",
           rating: 4,
           reviews: 520,
           image: "/product.png",
@@ -145,7 +146,7 @@ export default function NewLaunchesPage() {
           id: 304,
           name: "Instant Age Rewind Concealer",
           details: "Super-concentrated treatment eraser for under-eye circles.",
-          price: "$10.00",
+          price: "₹800",
           rating: 5,
           reviews: 280,
           image: "/product.png",
@@ -161,7 +162,7 @@ export default function NewLaunchesPage() {
           id: 401,
           name: "Matte Drama Luxury Lipstick",
           details: "Weightless velvet feel matte lipstick in premium couture shades.",
-          price: "$24.00",
+          price: "₹1,920",
           rating: 5,
           reviews: 120,
           image: "/product.png",
@@ -170,7 +171,7 @@ export default function NewLaunchesPage() {
           id: 402,
           name: "Hydrating Pore Minimising Primer",
           details: "Water-based grip primer to smooth pores and lock makeup base.",
-          price: "$28.00",
+          price: "₹2,240",
           rating: 4,
           reviews: 85,
           image: "/product.png",
@@ -179,7 +180,7 @@ export default function NewLaunchesPage() {
           id: 403,
           name: "Crushed Liquid Shimmer Shadow",
           details: "Metallic pigment liquid eyeshadow for high-intensity chrome eyes.",
-          price: "$22.00",
+          price: "₹1,760",
           rating: 5,
           reviews: 95,
           image: "/product.png",
@@ -188,7 +189,7 @@ export default function NewLaunchesPage() {
           id: 404,
           name: "Dewy Multi-Use Highlighter Stick",
           details: "Creamy solid highlighter stick for instant wet-look reflection.",
-          price: "$26.00",
+          price: "₹2,080",
           rating: 5,
           reviews: 72,
           image: "/product.png",
@@ -208,9 +209,17 @@ export default function NewLaunchesPage() {
     }));
   };
 
-  const handleAddToCart = (name: string, e: React.MouseEvent) => {
+  const { addToCart } = useCart();
+
+  const handleAddToCart = (product: Product, brand: string, e: React.MouseEvent) => {
     e.stopPropagation();
-    alert(`Added "${name}" to your shopping bag!`);
+    addToCart({
+      id: product.id,
+      name: product.name,
+      brand: brand,
+      price: parseFloat(product.price.replace(/[^\d.]/g, "")),
+      image: product.image,
+    });
   };
 
   const handleCardClick = (name: string) => {
@@ -313,7 +322,7 @@ export default function NewLaunchesPage() {
                     <span className={styles.price}>{product.price}</span>
                     <button
                       className={styles.addToCartBtn}
-                      onClick={(e) => handleAddToCart(product.name, e)}
+                      onClick={(e) => handleAddToCart(product, section.name, e)}
                     >
                       Add
                     </button>

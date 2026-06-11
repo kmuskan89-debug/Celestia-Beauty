@@ -85,12 +85,13 @@
 }
 
 .image {
-  object-fit: cover;
+  object-fit: contain;
+  padding: 0.75rem;
   transition: transform 0.5s ease;
 }
 
 .card:hover .image {
-  transform: scale(1.05);
+  transform: scale(1.08);
 }
 
 .wishlistBtn {
@@ -207,4 +208,13 @@
 .addToCartBtn:hover {
   background-color: var(--celestia-sunset-orange);
   color: white;
+}
+
+.cardLink {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  height: 100%;
 }

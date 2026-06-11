@@ -159,3 +159,209 @@
 .categoryCard:hover .categoryLink svg {
   transform: translateX(3px);
 }
+
+/* Homepage Promo/CTA Banner */
+.ctaBannerContainer {
+  margin: 2rem 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .ctaBannerContainer {
+    margin: 3rem 4rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .ctaBannerContainer {
+    margin: 4rem 150px; /* 150px space left from both sides */
+  }
+}
+
+.ctaBanner {
+  background: linear-gradient(135deg, #fffcf8 0%, #fff0e0 100%);
+  border: 1px solid var(--celestia-soft-peach);
+  border-radius: 24px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  overflow: hidden;
+  box-shadow: var(--shadow-subtle);
+  position: relative;
+}
+
+@media (min-width: 768px) {
+  .ctaBanner {
+    flex-direction: row;
+    padding: 3rem 4rem;
+    gap: 4rem;
+    height: 260px;
+  }
+}
+
+.ctaBanner::after {
+  content: '';
+  position: absolute;
+  right: -5%;
+  bottom: -10%;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background-color: #ffd8bf;
+  opacity: 0.25;
+  filter: blur(40px);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.ctaContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1.25rem;
+  z-index: 2;
+}
+
+@media (min-width: 768px) {
+  .ctaContent {
+    align-items: flex-start;
+    text-align: left;
+  }
+}
+
+.ctaTitle {
+  font-family: var(--font-serif);
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--celestia-charcoal);
+  line-height: 1.2;
+  margin: 0;
+}
+
+@media (min-width: 768px) {
+  .ctaTitle {
+    font-size: 2.25rem;
+  }
+}
+
+.ctaSubtitle {
+  font-size: 0.95rem;
+  color: var(--celestia-gray);
+  margin: 0;
+}
+
+.ctaButton {
+  background-color: var(--celestia-sunset-orange);
+  color: white;
+  font-weight: 700;
+  padding: 0.8rem 1.75rem;
+  border-radius: 50px;
+  border: none;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  box-shadow: 0 4px 12px rgba(253, 110, 33, 0.25);
+  text-decoration: none;
+  display: inline-block;
+}
+
+.ctaButton:hover {
+  background-color: #e25a16;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(253, 110, 33, 0.4);
+}
+
+.ctaImageWrapper {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  flex-shrink: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (min-width: 768px) {
+  .ctaImageWrapper {
+    width: 200px;
+    height: 200px;
+  }
+}
+
+.ctaImage {
+  object-fit: contain;
+  filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.08));
+}
+
+/* Features/Trust Badges Section */
+.featuresSection {
+  background-color: var(--celestia-pearl-white);
+  border-top: 1px solid var(--celestia-light-gray);
+  border-bottom: 1px solid var(--celestia-light-gray);
+  padding: 3.5rem 1.5rem;
+  width: 100%;
+}
+
+.featuresGrid {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+}
+
+@media (min-width: 640px) {
+  .featuresGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .featuresGrid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+.featureItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.75rem;
+  padding: 0 1rem;
+}
+
+.featureIcon {
+  color: var(--celestia-sunset-orange);
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+
+.featureItem:hover .featureIcon {
+  transform: scale(1.1) translateY(-2px);
+}
+
+.featureTitle {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--celestia-charcoal);
+  margin: 0;
+}
+
+.featureText {
+  font-size: 0.85rem;
+  color: var(--celestia-gray);
+  margin: 0;
+  line-height: 1.5;
+}
+

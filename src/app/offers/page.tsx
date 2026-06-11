@@ -64,9 +64,9 @@ const PROMO_CODES: PromoCode[] = [
   {
     id: 6,
     badge: "New Customer",
-    discount: "$15 OFF",
+    discount: "₹150 OFF",
     title: "Celestia Welcome Gift",
-    description: "New to Celestia? Take $15 off your first purchase of $60 or more across any category.",
+    description: "New to Celestia? Take ₹150 off your first purchase of ₹1,000 or more across any category.",
     code: "WELCOME15",
     expiry: "Expires Oct 10, 2026",
   },

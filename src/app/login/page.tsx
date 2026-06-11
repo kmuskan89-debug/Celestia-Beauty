@@ -2,6 +2,8 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useAuth } from "../../context/AuthContext";
 
 export default function LoginPage() {
   const [isLogin, setIsLogin] = useState(true);
@@ -12,13 +14,42 @@ export default function LoginPage() {
     agree: false,
     rememberMe: false,
   });
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const { login, signup } = useAuth();
+  const router = useRouter();
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (isLogin) {
-      alert(`Logging in with email: ${formData.email}`);
-    } else {
-      alert(`Registering user: ${formData.name} (${formData.email})`);
+    setError(null);
+    setLoading(true);
+
+    try {
+      if (isLogin) {
+        const result = await login(formData.email, formData.password);
+        if (result.success) {
+          router.push("/");
+        } else {
+          setError(result.error || "Failed to sign in.");
+        }
+      } else {
+        if (!formData.agree) {
+          setError("You must agree to the Terms and Privacy Policy.");
+          setLoading(false);
+          return;
+        }
+        const result = await signup(formData.name, formData.email, formData.password);
+        if (result.success) {
+          router.push("/");
+        } else {
+          setError(result.error || "Failed to create account.");
+        }
+      }
+    } catch (err: any) {
+      setError(err.message || "An unexpected error occurred.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -80,6 +111,16 @@ export default function LoginPage() {
                   : "Sign up today to discover tailored cosmetics drops."}
               </p>
             </div>
+
+            {/* Error Alert Box */}
+            {error && (
+              <div className="bg-rose-50 border border-rose-100 text-rose-600 rounded-lg p-3 text-[11px] leading-relaxed flex gap-2 items-start shadow-sm">
+                <svg className="w-4 h-4 shrink-0 text-rose-500 mt-0.5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                </svg>
+                <span>{error}</span>
+              </div>
+            )}
 
             {/* Form */}
             <form onSubmit={handleSubmit} className="flex flex-col gap-3.5">
@@ -182,9 +223,20 @@ export default function LoginPage() {
               {/* Submit button */}
               <button
                 type="submit"
-                className="w-full bg-orange-500 hover:bg-orange-600 text-white text-[11px] font-bold py-2.5 rounded-lg transition-colors shadow-md mt-2"
+                disabled={loading}
+                className="w-full bg-orange-500 hover:bg-orange-600 disabled:bg-orange-400 text-white text-[11px] font-bold py-2.5 rounded-lg transition-colors shadow-md mt-2 flex items-center justify-center gap-2"
               >
-                {isLogin ? "Sign In" : "Create Account"}
+                {loading ? (
+                  <>
+                    <svg className="animate-spin h-3.5 w-3.5 text-white" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                    </svg>
+                    <span>{isLogin ? "Signing In..." : "Creating Account..."}</span>
+                  </>
+                ) : (
+                  isLogin ? "Sign In" : "Create Account"
+                )}
               </button>
 
             </form>

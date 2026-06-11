@@ -2,6 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
+import { useAuth } from "../context/AuthContext";
 
 interface ProfilePopoverProps {
   onMouseEnter?: () => void;
@@ -10,6 +11,12 @@ interface ProfilePopoverProps {
 }
 
 export default function ProfilePopover({ onMouseEnter, onMouseLeave, onClose }: ProfilePopoverProps) {
+  const { user, logout } = useAuth();
+
+  const handleLogout = () => {
+    logout();
+    if (onClose) onClose();
+  };
   const profileLinks = [
     {
       label: "My Account",
@@ -65,25 +72,36 @@ export default function ProfilePopover({ onMouseEnter, onMouseLeave, onClose }: 
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
     >
+      {/* Hover bridge to prevent popover from closing due to spacing gap */}
+      <div className="absolute top-0 left-0 right-0 h-3.5 -translate-y-full bg-transparent" />
       {/* Popover Header */}
       <div className="flex flex-col gap-0.5">
         <h4 className="font-serif text-sm font-bold text-zinc-900 tracking-wide">
-          Welcome to Celestia
+          {user ? `Hello, ${user.name}` : "Welcome to Celestia"}
         </h4>
         <p className="text-[10px] text-zinc-400">
-          Access your personal beauty drawer
+          {user ? user.email : "Access your personal beauty drawer"}
         </p>
       </div>
 
       {/* Login or Register CTA Button */}
       <div className="flex flex-col gap-2">
-        <Link
-          href="/login"
-          onClick={onClose}
-          className="w-full text-center bg-orange-500 hover:bg-orange-600 text-white text-[11px] font-bold py-2 rounded-lg transition-colors shadow-sm"
-        >
-          Login or Register
-        </Link>
+        {user ? (
+          <button
+            onClick={handleLogout}
+            className="w-full text-center bg-zinc-900 hover:bg-zinc-800 text-white text-[11px] font-bold py-2 rounded-lg transition-colors shadow-sm cursor-pointer"
+          >
+            Sign Out
+          </button>
+        ) : (
+          <Link
+            href="/login"
+            onClick={onClose}
+            className="w-full text-center bg-orange-500 hover:bg-orange-600 text-white text-[11px] font-bold py-2 rounded-lg transition-colors shadow-sm"
+          >
+            Login or Register
+          </Link>
+        )}
       </div>
 
       {/* Divider */}

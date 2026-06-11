@@ -2,93 +2,15 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import styles from "./ProductSection.module.css";
-
-interface Product {
-  id: number;
-  name: string;
-  details: string;
-  price: string;
-  rating: number;
-  reviews: number;
-  image: string;
-}
+import { Product, ALL_PRODUCTS } from "../data/products";
+import { useCart } from "../context/CartContext";
 
 export default function ProductSection() {
-  const products: Product[] = [
-    {
-      id: 1,
-      name: "Sunset Radiance Serum",
-      details: "Revitalizing and hydrating facial serum for an ultimate golden hour glow.",
-      price: "$48.00",
-      rating: 5,
-      reviews: 124,
-      image: "/product.png",
-    },
-    {
-      id: 2,
-      name: "Amber Glow Moisturizer",
-      details: "Deeply nourishing hydration cream packed with botanical orange blossoms.",
-      price: "$36.00",
-      rating: 4,
-      reviews: 98,
-      image: "/product.png",
-    },
-    {
-      id: 3,
-      name: "Desert Rose Lip Oil",
-      details: "Sheer tint oil infused with natural seed oils for high shine and hydration.",
-      price: "$22.00",
-      rating: 5,
-      reviews: 156,
-      image: "/product.png",
-    },
-    {
-      id: 4,
-      name: "Citrus Infused Body Wash",
-      details: "Invigorating shower gel with essential oils of sweet mandarin and lime.",
-      price: "$28.00",
-      rating: 5,
-      reviews: 82,
-      image: "/product.png",
-    },
-    {
-      id: 5,
-      name: "Gilded Honey Eyeshadow",
-      details: "Shimmering loose pigment eyeshadow for a warm metallic finish.",
-      price: "$24.00",
-      rating: 4,
-      reviews: 43,
-      image: "/product.png",
-    },
-    {
-      id: 6,
-      name: "Coral Glow Blush Stick",
-      details: "Multi-use cream color stick for cheeks and lips with a dewy finish.",
-      price: "$32.00",
-      rating: 5,
-      reviews: 74,
-      image: "/product.png",
-    },
-    {
-      id: 7,
-      name: "Sandalwood & Mandarin Mist",
-      details: "Warm and sophisticated fragrance spray with bright citrus accents.",
-      price: "$65.00",
-      rating: 5,
-      reviews: 112,
-      image: "/product.png",
-    },
-    {
-      id: 8,
-      name: "Vitamin C Brightening Mask",
-      details: "Clarifying face mask designed to restore clarity and even skin tones.",
-      price: "$42.00",
-      rating: 4,
-      reviews: 89,
-      image: "/product.png",
-    },
-  ];
+  const trendingIds = [6, 7, 46, 14, 47, 48, 18, 49];
+  const products = ALL_PRODUCTS.filter((p) => trendingIds.includes(p.id))
+    .sort((a, b) => trendingIds.indexOf(a.id) - trendingIds.indexOf(b.id));
 
   // Client state to track wishlisted items
   const [wishlist, setWishlist] = useState<Record<number, boolean>>({});
@@ -101,9 +23,18 @@ export default function ProductSection() {
     }));
   };
 
-  const handleAddToCart = (name: string, e: React.MouseEvent) => {
+  const { addToCart } = useCart();
+
+  const handleAddToCart = (product: Product, e: React.MouseEvent) => {
     e.stopPropagation();
-    alert(`Added "${name}" to your shopping bag!`);
+    addToCart({
+      id: product.id,
+      name: product.name,
+      brand: product.brand,
+      price: product.price * 80,
+      image: product.image,
+    });
+    alert(`Added "${product.name}" to your shopping bag!`);
   };
 
   return (
@@ -137,56 +68,59 @@ export default function ProductSection() {
               </svg>
             </button>
 
-            {/* Product Card Image Container */}
-            <div className={styles.imageWrapper}>
-              <Image
-                src={product.image}
-                alt={product.name}
-                fill
-                className={styles.image}
-                sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
-              />
-            </div>
+            {/* Link wrapper for product details page navigation */}
+            <Link href={`/product/${product.id}`} className={styles.cardLink}>
+              {/* Product Card Image Container */}
+              <div className={styles.imageWrapper}>
+                <Image
+                  src={product.image}
+                  alt={product.name}
+                  fill
+                  className={styles.image}
+                  sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                />
+              </div>
 
-            {/* Product Card Info */}
-            <div className={styles.info}>
-              {/* Star Rating Block */}
-              <div className={styles.ratingContainer}>
-                <div className={styles.stars}>
-                  {Array.from({ length: 5 }).map((_, index) => (
-                    <svg
-                      key={index}
-                      width="12"
-                      height="12"
-                      viewBox="0 0 24 24"
-                      fill={index < product.rating ? "currentColor" : "none"}
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                    </svg>
-                  ))}
+              {/* Product Card Info */}
+              <div className={styles.info}>
+                {/* Star Rating Block */}
+                <div className={styles.ratingContainer}>
+                  <div className={styles.stars}>
+                    {Array.from({ length: 5 }).map((_, index) => (
+                      <svg
+                        key={index}
+                        width="12"
+                        height="12"
+                        viewBox="0 0 24 24"
+                        fill={index < product.rating ? "currentColor" : "none"}
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      >
+                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                      </svg>
+                    ))}
+                  </div>
+                  <span className={styles.reviewsCount}>({product.reviews})</span>
                 </div>
-                <span className={styles.reviewsCount}>({product.reviews})</span>
-              </div>
 
-              {/* Product Details */}
-              <h3 className={styles.name}>{product.name}</h3>
-              <p className={styles.details}>{product.details}</p>
+                {/* Product Details */}
+                <h3 className={styles.name}>{product.name}</h3>
+                <p className={styles.details}>{product.details}</p>
 
-              {/* Card Footer: Price & Add-To-Cart */}
-              <div className={styles.footer}>
-                <span className={styles.price}>{product.price}</span>
-                <button
-                  className={styles.addToCartBtn}
-                  onClick={(e) => handleAddToCart(product.name, e)}
-                >
-                  Add
-                </button>
+                {/* Card Footer: Price & Add-To-Cart */}
+                <div className={styles.footer}>
+                  <span className={styles.price}>₹{product.price * 80}.00</span>
+                  <button
+                    className={styles.addToCartBtn}
+                    onClick={(e) => handleAddToCart(product, e)}
+                  >
+                    Add
+                  </button>
+                </div>
               </div>
-            </div>
+            </Link>
           </div>
         ))}
       </div>

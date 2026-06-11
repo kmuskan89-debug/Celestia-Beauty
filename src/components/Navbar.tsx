@@ -1,9 +1,10 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import Link from "next/link";
 import BrandsPopover from "./BrandsPopover";
 import ProfilePopover from "./ProfilePopover";
+import { useCart } from "../context/CartContext";
 import styles from "./Navbar.module.css";
 
 export default function Navbar() {
@@ -11,6 +12,32 @@ export default function Navbar() {
   const [searchQuery, setSearchQuery] = useState("");
   const [showBrands, setShowBrands] = useState(false);
   const [showProfile, setShowProfile] = useState(false);
+  const { cartCount } = useCart();
+
+  const brandsTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const profileTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  const handleMouseEnterBrands = () => {
+    if (brandsTimeoutRef.current) clearTimeout(brandsTimeoutRef.current);
+    setShowBrands(true);
+  };
+
+  const handleMouseLeaveBrands = () => {
+    brandsTimeoutRef.current = setTimeout(() => {
+      setShowBrands(false);
+    }, 300);
+  };
+
+  const handleMouseEnterProfile = () => {
+    if (profileTimeoutRef.current) clearTimeout(profileTimeoutRef.current);
+    setShowProfile(true);
+  };
+
+  const handleMouseLeaveProfile = () => {
+    profileTimeoutRef.current = setTimeout(() => {
+      setShowProfile(false);
+    }, 300);
+  };
 
   const navLinks = [
     { label: "Home", href: "/" },
@@ -32,7 +59,7 @@ export default function Navbar() {
     <>
       {/* Top Banner Ribbon */}
       <div className={styles.promoBanner}>
-        FREE SHIPPING ON ORDERS OVER $50 • USE CODE: CELESTIA
+        FREE SHIPPING ON ORDERS ABOVE ₹499 • USE CODE: CELESTIA
       </div>
 
       {/* Main Header */}
@@ -50,8 +77,8 @@ export default function Navbar() {
                 <li
                   key={link.label}
                   className={styles.navItem}
-                  onMouseEnter={() => link.label === "Brands" && setShowBrands(true)}
-                  onMouseLeave={() => link.label === "Brands" && setShowBrands(false)}
+                  onMouseEnter={() => link.label === "Brands" && handleMouseEnterBrands()}
+                  onMouseLeave={() => link.label === "Brands" && handleMouseLeaveBrands()}
                 >
                   {link.label === "Brands" ? (
                     <>
@@ -75,8 +102,8 @@ export default function Navbar() {
                       </button>
                       {showBrands && (
                         <BrandsPopover
-                          onMouseEnter={() => setShowBrands(true)}
-                          onMouseLeave={() => setShowBrands(false)}
+                          onMouseEnter={handleMouseEnterBrands}
+                          onMouseLeave={handleMouseLeaveBrands}
                         />
                       )}
                     </>
@@ -120,8 +147,8 @@ export default function Navbar() {
             {/* Account Account Icon */}
             <div
               className="relative"
-              onMouseEnter={() => setShowProfile(true)}
-              onMouseLeave={() => setShowProfile(false)}
+              onMouseEnter={handleMouseEnterProfile}
+              onMouseLeave={handleMouseLeaveProfile}
             >
               <button
                 className={styles.iconBtn}
@@ -144,15 +171,15 @@ export default function Navbar() {
               </button>
               {showProfile && (
                 <ProfilePopover
-                  onMouseEnter={() => setShowProfile(true)}
-                  onMouseLeave={() => setShowProfile(false)}
+                  onMouseEnter={handleMouseEnterProfile}
+                  onMouseLeave={handleMouseLeaveProfile}
                   onClose={() => setShowProfile(false)}
                 />
               )}
             </div>
 
             {/* Wishlist Icon (Hearts) with Badge */}
-            <button className={styles.iconBtn} aria-label="Wishlist">
+            <Link href="/wishlist" className={styles.iconBtn} aria-label="Wishlist">
               <svg
                 width="20"
                 height="20"
@@ -166,10 +193,10 @@ export default function Navbar() {
                 <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
               </svg>
               <span className={styles.badge}>2</span>
-            </button>
+            </Link>
 
             {/* Cart Icon (Shopping Bag) with Badge */}
-            <button className={styles.iconBtn} aria-label="Cart">
+            <Link href="/cart" className={styles.iconBtn} aria-label="Cart">
               <svg
                 width="20"
                 height="20"
@@ -184,8 +211,8 @@ export default function Navbar() {
                 <line x1="3" y1="6" x2="21" y2="6"></line>
                 <path d="M16 10a4 4 0 0 1-8 0"></path>
               </svg>
-              <span className={styles.badge}>1</span>
-            </button>
+              <span className={styles.badge}>{cartCount}</span>
+            </Link>
 
             {/* Mobile Hamburger toggle */}
             <button

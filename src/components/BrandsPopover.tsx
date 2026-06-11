@@ -150,6 +150,8 @@ export default function BrandsPopover({ onMouseEnter, onMouseLeave }: BrandsPopo
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
     >
+      {/* Hover bridge to prevent popover from closing due to spacing gap */}
+      <div className="absolute top-0 left-0 right-0 h-3 -translate-y-full bg-transparent" />
       {/* Background grid overlay */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#00000005_1px,transparent_1px),linear-gradient(to_bottom,#00000005_1px,transparent_1px)] bg-[size:14px_24px] pointer-events-none" />
 
