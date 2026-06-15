@@ -3,7 +3,7 @@
 import React, { useState, useMemo } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { useCart } from "../../context/CartContext";
+import { useCart } from "../../../context/CartContext";
 import styles from "./page.module.css";
 
 export default function CartPage() {

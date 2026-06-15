@@ -1,32 +1,41 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import styles from "./ProductSection.module.css";
 import { Product, ALL_PRODUCTS } from "../data/products";
 import { useCart } from "../context/CartContext";
+import { useWishlist } from "../context/WishlistContext";
+import { useRouter } from "next/navigation";
 
 export default function ProductSection() {
   const trendingIds = [6, 7, 46, 14, 47, 48, 18, 49];
   const products = ALL_PRODUCTS.filter((p) => trendingIds.includes(p.id))
     .sort((a, b) => trendingIds.indexOf(a.id) - trendingIds.indexOf(b.id));
 
-  // Client state to track wishlisted items
-  const [wishlist, setWishlist] = useState<Record<number, boolean>>({});
+  const { toggleWishlist, isInWishlist } = useWishlist();
+  const router = useRouter();
 
-  const toggleWishlist = (id: number, e: React.MouseEvent) => {
+  const handleToggleWishlist = (product: Product, e: React.MouseEvent) => {
     e.stopPropagation(); // Prevent card navigation click
-    setWishlist((prev) => ({
-      ...prev,
-      [id]: !prev[id],
-    }));
+    e.preventDefault();
+    toggleWishlist({
+      id: product.id,
+      name: product.name,
+      brand: product.brand,
+      price: product.price * 80,
+      rating: product.rating,
+      reviews: product.reviews,
+      image: product.image,
+    });
   };
 
   const { addToCart } = useCart();
 
   const handleAddToCart = (product: Product, e: React.MouseEvent) => {
     e.stopPropagation();
+    e.preventDefault();
     addToCart({
       id: product.id,
       name: product.name,
@@ -35,6 +44,19 @@ export default function ProductSection() {
       image: product.image,
     });
     alert(`Added "${product.name}" to your shopping bag!`);
+  };
+
+  const handleBuy = (product: Product, e: React.MouseEvent) => {
+    e.stopPropagation();
+    e.preventDefault();
+    addToCart({
+      id: product.id,
+      name: product.name,
+      brand: product.brand,
+      price: product.price * 80,
+      image: product.image,
+    });
+    router.push("/cart");
   };
 
   return (
@@ -50,7 +72,7 @@ export default function ProductSection() {
             {/* Wishlist Button Overlay */}
             <button
               className={styles.wishlistBtn}
-              onClick={(e) => toggleWishlist(product.id, e)}
+              onClick={(e) => handleToggleWishlist(product, e)}
               aria-label="Add to Wishlist"
             >
               <svg
@@ -58,7 +80,7 @@ export default function ProductSection() {
                 width="18"
                 height="18"
                 viewBox="0 0 24 24"
-                fill={wishlist[product.id] ? "currentColor" : "none"}
+                fill={isInWishlist(product.id) ? "currentColor" : "none"}
                 stroke="currentColor"
                 strokeWidth="2"
                 strokeLinecap="round"
@@ -112,12 +134,20 @@ export default function ProductSection() {
                 {/* Card Footer: Price & Add-To-Cart */}
                 <div className={styles.footer}>
                   <span className={styles.price}>₹{product.price * 80}.00</span>
-                  <button
-                    className={styles.addToCartBtn}
-                    onClick={(e) => handleAddToCart(product, e)}
-                  >
-                    Add
-                  </button>
+                  <div className={styles.actionButtons}>
+                    <button
+                      className={styles.addToCartBtn}
+                      onClick={(e) => handleAddToCart(product, e)}
+                    >
+                      Add
+                    </button>
+                    <button
+                      className={styles.buyBtn}
+                      onClick={(e) => handleBuy(product, e)}
+                    >
+                      Buy
+                    </button>
+                  </div>
                 </div>
               </div>
             </Link>

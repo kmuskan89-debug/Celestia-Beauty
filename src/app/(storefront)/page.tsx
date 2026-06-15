@@ -1,8 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
-import Hero from "../components/Hero";
-import ProductSection from "../components/ProductSection";
-import BrandDeals from "../components/BrandDeals";
+import Hero from "../../components/Hero";
+import ProductSection from "../../components/ProductSection";
+import BrandDeals from "../../components/BrandDeals";
 import styles from "./page.module.css";
 
 export default function Home() {

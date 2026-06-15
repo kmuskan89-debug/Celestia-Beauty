@@ -3,6 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import { useCart } from "../context/CartContext";
+import { useRouter } from "next/navigation";
 import styles from "./BrandDeals.module.css";
 
 interface Product {
@@ -19,6 +20,7 @@ interface Product {
 
 export default function BrandDeals() {
   const { addToCart } = useCart();
+  const router = useRouter();
 
   const products: Product[] = [
     {
@@ -339,6 +341,18 @@ export default function BrandDeals() {
       price: product.priceDeal * 80,
       image: product.image,
     });
+    alert(`Added "${product.name}" to your shopping bag!`);
+  };
+
+  const handleBuy = (product: Product) => {
+    addToCart({
+      id: product.id,
+      name: product.name,
+      brand: product.brand,
+      price: product.priceDeal * 80,
+      image: product.image,
+    });
+    router.push("/cart");
   };
 
   return (
@@ -398,12 +412,20 @@ export default function BrandDeals() {
                   </div>
                   <span className={styles.discountTag}>{product.discount}</span>
                 </div>
-                <button
-                  className={styles.addToCartBtn}
-                  onClick={() => handleAddToCart(product)}
-                >
-                  Add
-                </button>
+                <div className={styles.actionButtons}>
+                  <button
+                    className={styles.addToCartBtn}
+                    onClick={() => handleAddToCart(product)}
+                  >
+                    Add
+                  </button>
+                  <button
+                    className={styles.buyBtn}
+                    onClick={() => handleBuy(product)}
+                  >
+                    Buy
+                  </button>
+                </div>
               </div>
             </div>
           </div>

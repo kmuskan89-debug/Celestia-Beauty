@@ -1,67 +1,17 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import styles from "./page.module.css";
-import { useCart } from "../../context/CartContext";
-
-interface WishlistItem {
-  id: number;
-  name: string;
-  brand: string;
-  price: number;
-  rating: number;
-  reviews: number;
-  image: string;
-}
-
-const INITIAL_WISHLIST: WishlistItem[] = [
-  {
-    id: 1,
-    name: "Sunset Radiance Serum",
-    brand: "Celestia Lab",
-    price: 3840,
-    rating: 5,
-    reviews: 124,
-    image: "/product.png",
-  },
-  {
-    id: 2,
-    name: "Vinyl Ink Liquid Lipstick",
-    brand: "Maybelline",
-    price: 1120,
-    rating: 5,
-    reviews: 340,
-    image: "/product.png",
-  },
-  {
-    id: 3,
-    name: "Bond Builder Repair Mask",
-    brand: "Olaplex",
-    price: 2400,
-    rating: 5,
-    reviews: 410,
-    image: "/product.png",
-  },
-  {
-    id: 4,
-    name: "Vanilla Amber Perfume",
-    brand: "Victoria's Secret",
-    price: 6000,
-    rating: 5,
-    reviews: 204,
-    image: "/product.png",
-  },
-];
+import { useCart } from "../../../context/CartContext";
+import { useWishlist, WishlistItem } from "../../../context/WishlistContext";
+import { useRouter } from "next/navigation";
 
 export default function WishlistPage() {
-  const [items, setItems] = useState<WishlistItem[]>(INITIAL_WISHLIST);
+  const { wishlist, removeFromWishlist } = useWishlist();
   const { addToCart } = useCart();
-
-  const handleRemoveItem = (id: number) => {
-    setItems((prev) => prev.filter((item) => item.id !== id));
-  };
+  const router = useRouter();
 
   const handleAddToCart = (item: WishlistItem) => {
     addToCart({
@@ -71,6 +21,18 @@ export default function WishlistPage() {
       price: item.price,
       image: item.image,
     });
+    alert(`Added "${item.name}" to your shopping bag!`);
+  };
+
+  const handleBuy = (item: WishlistItem) => {
+    addToCart({
+      id: item.id,
+      name: item.name,
+      brand: item.brand,
+      price: item.price,
+      image: item.image,
+    });
+    router.push("/cart");
   };
 
   return (
@@ -93,9 +55,9 @@ export default function WishlistPage() {
       </header>
 
       {/* Main Content Area */}
-      {items.length > 0 ? (
+      {wishlist.length > 0 ? (
         <main className={styles.grid}>
-          {items.map((item) => (
+          {wishlist.map((item) => (
             <div key={item.id} className={styles.card}>
               {/* Image and Remove button */}
               <div className={styles.imageWrapper}>
@@ -107,7 +69,7 @@ export default function WishlistPage() {
                   sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
                 />
                 <button
-                  onClick={() => handleRemoveItem(item.id)}
+                  onClick={() => removeFromWishlist(item.id)}
                   className={styles.removeBtn}
                   aria-label={`Remove ${item.name} from Wishlist`}
                 >
@@ -157,12 +119,20 @@ export default function WishlistPage() {
                 {/* Footer price and CTA */}
                 <div className={styles.cardFooter}>
                   <span className={styles.price}>₹{item.price}.00</span>
-                  <button
-                    onClick={() => handleAddToCart(item)}
-                    className={styles.addToCartBtn}
-                  >
-                    Add to Bag
-                  </button>
+                  <div className={styles.actionButtons}>
+                    <button
+                      onClick={() => handleAddToCart(item)}
+                      className={styles.addToCartBtn}
+                    >
+                      Add
+                    </button>
+                    <button
+                      onClick={() => handleBuy(item)}
+                      className={styles.buyBtn}
+                    >
+                      Buy
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>

@@ -211,7 +211,7 @@
   background: none;
   border: 1px solid var(--celestia-sunset-orange);
   color: var(--celestia-sunset-orange);
-  padding: 0.45rem 0.9rem;
+  padding: 0.4rem 0.6rem;
   border-radius: 9999px;
   font-size: 0.75rem;
   font-weight: 700;
@@ -222,6 +222,29 @@
 .addToCartBtn:hover {
   background-color: var(--celestia-sunset-orange);
   color: white;
+}
+
+.buyBtn {
+  background-color: var(--celestia-sunset-orange);
+  border: 1px solid var(--celestia-sunset-orange);
+  color: white;
+  padding: 0.4rem 0.6rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.buyBtn:hover {
+  background-color: var(--celestia-charcoal);
+  border-color: var(--celestia-charcoal);
+}
+
+.actionButtons {
+  display: flex;
+  gap: 0.35rem;
+  align-items: center;
 }
 
 /* Empty State Styling */

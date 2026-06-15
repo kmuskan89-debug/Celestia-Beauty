@@ -4,8 +4,10 @@ import React, { useState, use } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import styles from "./page.module.css";
-import { ALL_PRODUCTS } from "../../../data/products";
-import { useCart } from "../../../context/CartContext";
+import { ALL_PRODUCTS } from "../../../../data/products";
+import { useCart } from "../../../../context/CartContext";
+import { useWishlist } from "../../../../context/WishlistContext";
+import { useRouter } from "next/navigation";
 
 interface PageProps {
   params: Promise<{ id: string }>;
@@ -17,8 +19,9 @@ export default function ProductDetailPage({ params }: PageProps) {
   const product = ALL_PRODUCTS.find((p) => p.id === productId);
 
   const [quantity, setQuantity] = useState(1);
-  const [isWishlisted, setIsWishlisted] = useState(false);
   const { addToCart } = useCart();
+  const { toggleWishlist, isInWishlist } = useWishlist();
+  const router = useRouter();
 
   if (!product) {
     return (
@@ -26,7 +29,7 @@ export default function ProductDetailPage({ params }: PageProps) {
         <div className={styles.notFoundSection}>
           <h1 className={styles.notFoundTitle}>Product Not Found</h1>
           <p className={styles.notFoundSubtitle}>
-            We couldn't find the beauty selection you were looking for. It may have been removed or the link might be incorrect.
+            We couldn&apos;t find the beauty selection you were looking for. It may have been removed or the link might be incorrect.
           </p>
           <Link href="/category" className={styles.backToCatalogBtn}>
             Explore Products
@@ -44,16 +47,24 @@ export default function ProductDetailPage({ params }: PageProps) {
     setQuantity((prev) => prev + 1);
   };
 
+  const isWishlisted = product ? isInWishlist(product.id) : false;
+
   const handleToggleWishlist = () => {
-    setIsWishlisted((prev) => {
-      const nextState = !prev;
-      if (nextState) {
-        alert(`Added "${product.name}" to your wishlist!`);
-      } else {
-        alert(`Removed "${product.name}" from your wishlist.`);
-      }
-      return nextState;
+    if (!product) return;
+    toggleWishlist({
+      id: product.id,
+      name: product.name,
+      brand: product.brand,
+      price: product.price * 80,
+      rating: product.rating,
+      reviews: product.reviews,
+      image: product.image,
     });
+    if (!isWishlisted) {
+      alert(`Added "${product.name}" to your wishlist!`);
+    } else {
+      alert(`Removed "${product.name}" from your wishlist.`);
+    }
   };
 
   const handleAddToCart = () => {
@@ -68,6 +79,20 @@ export default function ProductDetailPage({ params }: PageProps) {
       });
     }
     alert(`Added ${quantity} x "${product.name}" to your shopping bag!`);
+  };
+
+  const handleBuyNow = () => {
+    // Call addToCart quantity times
+    for (let i = 0; i < quantity; i++) {
+      addToCart({
+        id: product.id,
+        name: product.name,
+        brand: product.brand,
+        price: product.price * 80,
+        image: product.image,
+      });
+    }
+    router.push("/cart");
   };
 
   return (
@@ -178,6 +203,14 @@ export default function ProductDetailPage({ params }: PageProps) {
                 className={styles.addToCartBtn}
               >
                 Add to Bag
+              </button>
+
+              <button
+                type="button"
+                onClick={handleBuyNow}
+                className={styles.buyBtn}
+              >
+                Buy Now
               </button>
 
               <button

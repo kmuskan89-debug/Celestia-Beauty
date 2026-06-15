@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import BrandSlider from "../../components/BrandSlider";
+import BrandSlider from "../../../components/BrandSlider";
 import styles from "./page.module.css";
 
 interface PromoCode {

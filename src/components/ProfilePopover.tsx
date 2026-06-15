@@ -20,7 +20,7 @@ export default function ProfilePopover({ onMouseEnter, onMouseLeave, onClose }: 
   const profileLinks = [
     {
       label: "My Account",
-      href: "#account",
+      href: "/account",
       icon: (
         <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="1.75" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
@@ -29,7 +29,7 @@ export default function ProfilePopover({ onMouseEnter, onMouseLeave, onClose }: 
     },
     {
       label: "My Orders",
-      href: "#orders",
+      href: "/account?tab=orders",
       icon: (
         <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="1.75" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
@@ -38,7 +38,7 @@ export default function ProfilePopover({ onMouseEnter, onMouseLeave, onClose }: 
     },
     {
       label: "My Wishlist",
-      href: "#wishlist",
+      href: "/wishlist",
       icon: (
         <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="1.75" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
@@ -46,17 +46,8 @@ export default function ProfilePopover({ onMouseEnter, onMouseLeave, onClose }: 
       ),
     },
     {
-      label: "My Reviews",
-      href: "#reviews",
-      icon: (
-        <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="1.75" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.907c.961 0 1.367 1.223.592 1.808l-3.979 2.897a1 1 0 00-.364 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.978-2.897a1 1 0 00-1.176 0l-3.978 2.897c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.364-1.118L2.98 9.72c-.775-.585-.37-1.808.591-1.808h4.907a1 1 0 00.95-.69l1.52-4.674z" />
-        </svg>
-      ),
-    },
-    {
       label: "Settings",
-      href: "#settings",
+      href: "/account?tab=settings",
       icon: (
         <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="1.75" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />

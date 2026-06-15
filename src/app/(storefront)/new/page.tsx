@@ -1,9 +1,11 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import Image from "next/image";
 import styles from "./page.module.css";
-import { useCart } from "../../context/CartContext";
+import { useCart } from "../../../context/CartContext";
+import { useWishlist } from "../../../context/WishlistContext";
+import { useRouter } from "next/navigation";
 
 interface Product {
   id: number;
@@ -198,21 +200,28 @@ export default function NewLaunchesPage() {
     },
   ];
 
-  // Wishlist state
-  const [wishlist, setWishlist] = useState<Record<number, boolean>>({});
+  const { toggleWishlist, isInWishlist } = useWishlist();
+  const router = useRouter();
 
-  const toggleWishlist = (id: number, e: React.MouseEvent) => {
+  const handleToggleWishlist = (product: Product, brand: string, e: React.MouseEvent) => {
     e.stopPropagation();
-    setWishlist((prev) => ({
-      ...prev,
-      [id]: !prev[id],
-    }));
+    e.preventDefault();
+    toggleWishlist({
+      id: product.id,
+      name: product.name,
+      brand: brand,
+      price: parseFloat(product.price.replace(/[^\d.]/g, "")),
+      rating: product.rating,
+      reviews: product.reviews,
+      image: product.image,
+    });
   };
 
   const { addToCart } = useCart();
 
   const handleAddToCart = (product: Product, brand: string, e: React.MouseEvent) => {
     e.stopPropagation();
+    e.preventDefault();
     addToCart({
       id: product.id,
       name: product.name,
@@ -220,6 +229,20 @@ export default function NewLaunchesPage() {
       price: parseFloat(product.price.replace(/[^\d.]/g, "")),
       image: product.image,
     });
+    alert(`Added "${product.name}" to your shopping bag!`);
+  };
+
+  const handleBuy = (product: Product, brand: string, e: React.MouseEvent) => {
+    e.stopPropagation();
+    e.preventDefault();
+    addToCart({
+      id: product.id,
+      name: product.name,
+      brand: brand,
+      price: parseFloat(product.price.replace(/[^\d.]/g, "")),
+      image: product.image,
+    });
+    router.push("/cart");
   };
 
   const handleCardClick = (name: string) => {
@@ -260,7 +283,7 @@ export default function NewLaunchesPage() {
                 {/* Wishlist Button Overlay */}
                 <button
                   className={styles.wishlistBtn}
-                  onClick={(e) => toggleWishlist(product.id, e)}
+                  onClick={(e) => handleToggleWishlist(product, section.name, e)}
                   aria-label="Add to Wishlist"
                 >
                   <svg
@@ -268,7 +291,7 @@ export default function NewLaunchesPage() {
                     width="18"
                     height="18"
                     viewBox="0 0 24 24"
-                    fill={wishlist[product.id] ? "currentColor" : "none"}
+                    fill={isInWishlist(product.id) ? "currentColor" : "none"}
                     stroke="currentColor"
                     strokeWidth="2"
                     strokeLinecap="round"
@@ -320,12 +343,20 @@ export default function NewLaunchesPage() {
                   {/* Card Footer: Price & Add-To-Cart */}
                   <div className={styles.cardFooter}>
                     <span className={styles.price}>{product.price}</span>
-                    <button
-                      className={styles.addToCartBtn}
-                      onClick={(e) => handleAddToCart(product, section.name, e)}
-                    >
-                      Add
-                    </button>
+                    <div className={styles.actionButtons}>
+                      <button
+                        className={styles.addToCartBtn}
+                        onClick={(e) => handleAddToCart(product, section.name, e)}
+                      >
+                        Add
+                      </button>
+                      <button
+                        className={styles.buyBtn}
+                        onClick={(e) => handleBuy(product, section.name, e)}
+                      >
+                        Buy
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>

@@ -216,11 +216,35 @@
   color: white;
   border: none;
   border-radius: 8px;
-  padding: 0.45rem 0.9rem;
+  padding: 0.45rem 0.7rem;
   font-size: 0.8rem;
   font-weight: 700;
   cursor: pointer;
   transition: var(--transition-smooth);
+}
+
+.buyBtn {
+  background-color: var(--celestia-charcoal);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.45rem 0.7rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.buyBtn:hover {
+  background-color: #3f3f46;
+  transform: translateY(-1px);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+}
+
+.actionButtons {
+  display: flex;
+  gap: 0.35rem;
+  align-items: center;
 }
 
 .addToCartBtn:hover {

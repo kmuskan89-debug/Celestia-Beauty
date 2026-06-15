@@ -5,6 +5,7 @@ import Link from "next/link";
 import BrandsPopover from "./BrandsPopover";
 import ProfilePopover from "./ProfilePopover";
 import { useCart } from "../context/CartContext";
+import { useWishlist } from "../context/WishlistContext";
 import styles from "./Navbar.module.css";
 
 export default function Navbar() {
@@ -13,6 +14,7 @@ export default function Navbar() {
   const [showBrands, setShowBrands] = useState(false);
   const [showProfile, setShowProfile] = useState(false);
   const { cartCount } = useCart();
+  const { wishlistCount } = useWishlist();
 
   const brandsTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const profileTimeoutRef = useRef<NodeJS.Timeout | null>(null);
@@ -192,7 +194,7 @@ export default function Navbar() {
               >
                 <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
               </svg>
-              <span className={styles.badge}>2</span>
+              <span className={styles.badge}>{wishlistCount}</span>
             </Link>
 
             {/* Cart Icon (Shopping Bag) with Badge */}

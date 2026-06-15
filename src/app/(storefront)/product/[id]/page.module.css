@@ -246,6 +246,25 @@
   text-align: center;
 }
 
+.buyBtn {
+  background-color: var(--celestia-sunset-orange);
+  color: white;
+  border: none;
+  padding: 0.9rem 2.5rem;
+  border-radius: 9999px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  flex: 1;
+  text-align: center;
+}
+
+.buyBtn:hover {
+  background-color: var(--celestia-charcoal);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
 .addToCartBtn:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(255, 95, 31, 0.3);

@@ -3,25 +3,27 @@
 import React, { useState, useMemo, Suspense } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
-import BrandSlider from "../../components/BrandSlider";
-import SubNavbar from "../../components/SubNavbar";
-import { useCart } from "../../context/CartContext";
+import { useSearchParams, useRouter } from "next/navigation";
+import BrandSlider from "../../../components/BrandSlider";
+import SubNavbar from "../../../components/SubNavbar";
+import { useCart } from "../../../context/CartContext";
+import { useWishlist } from "../../../context/WishlistContext";
 import styles from "./page.module.css";
 
-import { Product, ALL_PRODUCTS } from "../../data/products";
+import { Product, ALL_PRODUCTS } from "../../../data/products";
 
 function CategoryPageContent() {
   const searchParams = useSearchParams();
   const rawType = searchParams ? searchParams.get("type") : null;
   const currentCategory = rawType || "Makeup";
   const { addToCart } = useCart();
+  const router = useRouter();
 
   // Filter States
   const [maxPrice, setMaxPrice] = useState<number>(8000);
   const [selectedBrands, setSelectedBrands] = useState<string[]>([]);
   const [minRating, setMinRating] = useState<number | null>(null);
-  const [wishlist, setWishlist] = useState<Record<number, boolean>>({});
+  const { toggleWishlist, isInWishlist } = useWishlist();
 
   // Get brands unique to the active category
   const categoryBrands = useMemo(() => {
@@ -32,12 +34,18 @@ function CategoryPageContent() {
   }, [currentCategory]);
 
   // Handle wishlist click
-  const toggleWishlist = (id: number, e: React.MouseEvent) => {
+  const handleToggleWishlist = (product: Product, e: React.MouseEvent) => {
     e.stopPropagation();
-    setWishlist((prev) => ({
-      ...prev,
-      [id]: !prev[id],
-    }));
+    e.preventDefault();
+    toggleWishlist({
+      id: product.id,
+      name: product.name,
+      brand: product.brand,
+      price: product.price * 80,
+      rating: product.rating,
+      reviews: product.reviews,
+      image: product.image,
+    });
   };
 
   // Handle brand selection
@@ -72,6 +80,7 @@ function CategoryPageContent() {
 
   const handleAddToCart = (product: Product, e: React.MouseEvent) => {
     e.stopPropagation();
+    e.preventDefault();
     addToCart({
       id: product.id,
       name: product.name,
@@ -80,6 +89,19 @@ function CategoryPageContent() {
       image: product.image,
     });
     alert(`Added "${product.name}" to your shopping bag!`);
+  };
+
+  const handleBuy = (product: Product, e: React.MouseEvent) => {
+    e.stopPropagation();
+    e.preventDefault();
+    addToCart({
+      id: product.id,
+      name: product.name,
+      brand: product.brand,
+      price: product.price * 80,
+      image: product.image,
+    });
+    router.push("/cart");
   };
 
   return (
@@ -200,7 +222,7 @@ function CategoryPageContent() {
                   {/* Wishlist Heart */}
                   <button
                     className={styles.wishlistBtn}
-                    onClick={(e) => toggleWishlist(product.id, e)}
+                    onClick={(e) => handleToggleWishlist(product, e)}
                     aria-label="Add to Wishlist"
                   >
                     <svg
@@ -208,7 +230,7 @@ function CategoryPageContent() {
                       width="18"
                       height="18"
                       viewBox="0 0 24 24"
-                      fill={wishlist[product.id] ? "currentColor" : "none"}
+                      fill={isInWishlist(product.id) ? "currentColor" : "none"}
                       stroke="currentColor"
                       strokeWidth="2"
                       strokeLinecap="round"
@@ -259,12 +281,20 @@ function CategoryPageContent() {
                       {/* Footer price/cart */}
                       <div className={styles.cardFooter}>
                         <span className={styles.price}>₹{product.price * 80}.00</span>
-                        <button
-                          className={styles.addToCartBtn}
-                          onClick={(e) => handleAddToCart(product, e)}
-                        >
-                          Add
-                        </button>
+                        <div className={styles.actionButtons}>
+                          <button
+                            className={styles.addToCartBtn}
+                            onClick={(e) => handleAddToCart(product, e)}
+                          >
+                            Add
+                          </button>
+                          <button
+                            className={styles.buyBtn}
+                            onClick={(e) => handleBuy(product, e)}
+                          >
+                            Buy
+                          </button>
+                        </div>
                       </div>
                     </div>
                   </Link>
