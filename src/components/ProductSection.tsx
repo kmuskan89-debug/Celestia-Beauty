@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import styles from "./ProductSection.module.css";
@@ -9,10 +9,31 @@ import { useCart } from "../context/CartContext";
 import { useWishlist } from "../context/WishlistContext";
 import { useRouter } from "next/navigation";
 
+const TRENDING_IDS = [6, 7, 46, 14, 47, 48, 18, 49];
+
 export default function ProductSection() {
-  const trendingIds = [6, 7, 46, 14, 47, 48, 18, 49];
-  const products = ALL_PRODUCTS.filter((p) => trendingIds.includes(p.id))
-    .sort((a, b) => trendingIds.indexOf(a.id) - trendingIds.indexOf(b.id));
+  const [products, setProducts] = useState<Product[]>([]);
+
+  useEffect(() => {
+    const savedProducts = localStorage.getItem("celestia_admin_products");
+    const allProds: Product[] = savedProducts ? JSON.parse(savedProducts) : ALL_PRODUCTS;
+
+    // Find newly added products (whose ID is not in the original list)
+    const originalIds = new Set(ALL_PRODUCTS.map((p) => p.id));
+    const newProducts = allProds.filter((p) => !originalIds.has(p.id));
+
+    // Get the trending products from the updated list (in case any was deleted or updated)
+    const trendingProducts = allProds
+      .filter((p) => TRENDING_IDS.includes(p.id))
+      .sort((a, b) => TRENDING_IDS.indexOf(a.id) - TRENDING_IDS.indexOf(b.id));
+
+    const updated = [...newProducts, ...trendingProducts];
+
+    const timer = setTimeout(() => {
+      setProducts(updated);
+    }, 0);
+    return () => clearTimeout(timer);
+  }, []);
 
   const { toggleWishlist, isInWishlist } = useWishlist();
   const router = useRouter();

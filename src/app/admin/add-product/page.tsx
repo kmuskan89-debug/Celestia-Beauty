@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { useAdmin } from "../../../context/AdminContext";
 import { Product } from "../../../data/products";
 import { useRouter } from "next/navigation";
@@ -8,6 +8,37 @@ import { useRouter } from "next/navigation";
 export default function AdminAddProduct() {
   const { products, setProducts, triggerToast } = useAdmin();
   const router = useRouter();
+
+  const [imageUrl, setImageUrl] = useState("");
+  const [uploading, setUploading] = useState(false);
+
+  const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    setUploading(true);
+    const formData = new FormData();
+    formData.append("file", file);
+
+    try {
+      const res = await fetch("/api/admin/upload", {
+        method: "POST",
+        body: formData,
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        throw new Error(data.error || "Failed to upload image");
+      }
+      setImageUrl(data.secure_url);
+      triggerToast("Image uploaded successfully to Cloudinary!");
+    } catch (err) {
+      const errorMsg = err instanceof Error ? err.message : "Failed to upload image.";
+      console.error(err);
+      triggerToast(errorMsg, "error");
+    } finally {
+      setUploading(false);
+    }
+  };
 
   // Add Product Form Handlers
   const handleAddProductSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -48,6 +79,7 @@ export default function AdminAddProduct() {
     setProducts([newProduct, ...products]);
     triggerToast(`"${name}" has been successfully added to products!`);
     e.currentTarget.reset();
+    setImageUrl("");
     router.push("/admin/products");
   };
 
@@ -113,15 +145,67 @@ export default function AdminAddProduct() {
           </div>
         </div>
 
-        <div className="space-y-1.5 flex flex-col align-start">
-          <label className="text-xs font-bold text-[#7a6e6a] uppercase">Product Image URL</label>
-          <input
-            type="url"
-            name="image"
-            placeholder="https://example.com/product-image.jpg"
-            className="w-full px-4 py-2.5 rounded-xl border border-[#f2e7e3] text-sm text-[#2d2422] focus:outline-none focus:border-[#ff5f1f] bg-[#FAF6F5] transition-all"
-          />
-          <p className="text-[10px] text-[#7a6e6a]">Leave blank to auto-assign a professional generic placeholder image.</p>
+        <div className="space-y-2 flex flex-col align-start">
+          <label className="text-xs font-bold text-[#7a6e6a] uppercase">Product Image *</label>
+          <input type="hidden" name="image" value={imageUrl} />
+          
+          <div className="w-full">
+            {imageUrl ? (
+              <div className="relative border border-[#f2e7e3] rounded-2xl overflow-hidden w-full max-w-sm h-48 bg-neutral-50 flex items-center justify-center">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={imageUrl} alt="Uploaded product" className="object-cover w-full h-full" />
+                <button
+                  type="button"
+                  onClick={() => setImageUrl("")}
+                  className="absolute top-3 right-3 bg-black/60 hover:bg-black/80 text-white rounded-full p-1.5 transition-all cursor-pointer shadow-md"
+                  title="Remove Image"
+                >
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+            ) : (
+              <div className="relative w-full max-w-sm">
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={handleFileUpload}
+                  className="hidden"
+                  id="cloudinary-image-upload"
+                  disabled={uploading}
+                />
+                <label
+                  htmlFor="cloudinary-image-upload"
+                  className={`border-2 border-dashed border-[#f2e7e3] hover:border-[#ff5f1f] rounded-2xl p-8 flex flex-col items-center justify-center gap-3 bg-[#FAF6F5] hover:bg-[#ff5f1f]/2 cursor-pointer transition-all w-full text-center ${
+                    uploading ? "opacity-50 pointer-events-none" : ""
+                  }`}
+                >
+                  {uploading ? (
+                    <>
+                      <svg className="animate-spin h-8 w-8 text-[#ff5f1f]" fill="none" viewBox="0 0 24 24">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                      </svg>
+                      <span className="text-sm font-semibold text-[#ff5f1f]">Uploading to Cloudinary...</span>
+                    </>
+                  ) : (
+                    <>
+                      <div className="w-12 h-12 rounded-xl bg-[#ff5f1f]/10 flex items-center justify-center text-[#ff5f1f]">
+                        <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2.2" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
+                        </svg>
+                      </div>
+                      <div className="space-y-1">
+                        <p className="text-sm font-bold text-[#2d2422]">Upload Product Image</p>
+                        <p className="text-[10px] text-[#7a6e6a]">Select a file from your computer</p>
+                      </div>
+                    </>
+                  )}
+                </label>
+              </div>
+            )}
+          </div>
         </div>
 
         <div className="space-y-1.5 flex flex-col align-start">

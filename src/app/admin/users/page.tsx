@@ -7,19 +7,47 @@ export default function AdminUsers() {
   const { users, setUsers, triggerToast } = useAdmin();
 
   // Toggle User Role
-  const handleToggleUserRole = (id: string, currentRole: string) => {
+  const handleToggleUserRole = async (id: string, currentRole: string) => {
     const nextRole = currentRole === "Administrator" ? "Customer" : currentRole === "Customer" ? "Vendor" : "Administrator";
-    setUsers(
-      users.map((u) => (u.id === id ? { ...u, role: nextRole } : u))
-    );
-    triggerToast(`User role updated to ${nextRole}.`, "info");
+    try {
+      const res = await fetch("/api/admin/users", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id, role: nextRole }),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        throw new Error(data.error || "Failed to update role");
+      }
+      setUsers(
+        users.map((u) => (u.id === id ? { ...u, role: nextRole } : u))
+      );
+      triggerToast(`User role updated to ${nextRole}.`, "info");
+    } catch (err) {
+      const errorMsg = err instanceof Error ? err.message : "Failed to update user role.";
+      console.error(err);
+      triggerToast(errorMsg, "error");
+    }
   };
 
   // Delete User
-  const handleDeleteUser = (id: string, name: string) => {
+  const handleDeleteUser = async (id: string, name: string) => {
     if (confirm(`Remove access for user "${name}"?`)) {
-      setUsers(users.filter((u) => u.id !== id));
-      triggerToast(`User "${name}" has been removed.`, "info");
+      try {
+        const res = await fetch(`/api/admin/users?id=${id}`, {
+          method: "DELETE",
+        });
+        const data = await res.json();
+        if (!res.ok) {
+          throw new Error(data.error || "Failed to delete user");
+        }
+        setUsers(users.filter((u) => u.id !== id));
+        triggerToast(`User "${name}" has been removed.`, "info");
+      } catch (err) {
+        const errorMsg = err instanceof Error ? err.message : "Failed to remove user.";
+        console.error(err);
+        triggerToast(errorMsg, "error");
+      }
     }
   };
 

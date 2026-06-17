@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useMemo, Suspense } from "react";
+import React, { useState, useEffect, useMemo, Suspense } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useSearchParams, useRouter } from "next/navigation";
@@ -19,6 +19,20 @@ function CategoryPageContent() {
   const { addToCart } = useCart();
   const router = useRouter();
 
+  // Load products from localStorage or fallback to ALL_PRODUCTS
+  const [products, setProducts] = useState<Product[]>(ALL_PRODUCTS);
+
+  useEffect(() => {
+    const savedProducts = localStorage.getItem("celestia_admin_products");
+    if (savedProducts) {
+      const parsed = JSON.parse(savedProducts);
+      const timer = setTimeout(() => {
+        setProducts(parsed);
+      }, 0);
+      return () => clearTimeout(timer);
+    }
+  }, []);
+
   // Filter States
   const [maxPrice, setMaxPrice] = useState<number>(8000);
   const [selectedBrands, setSelectedBrands] = useState<string[]>([]);
@@ -27,11 +41,11 @@ function CategoryPageContent() {
 
   // Get brands unique to the active category
   const categoryBrands = useMemo(() => {
-    const brands = ALL_PRODUCTS.filter(
+    const brands = products.filter(
       (p) => p.category.toLowerCase() === currentCategory.toLowerCase()
     ).map((p) => p.brand);
     return Array.from(new Set(brands));
-  }, [currentCategory]);
+  }, [currentCategory, products]);
 
   // Handle wishlist click
   const handleToggleWishlist = (product: Product, e: React.MouseEvent) => {
@@ -57,7 +71,7 @@ function CategoryPageContent() {
 
   // Filter Products
   const filteredProducts = useMemo(() => {
-    return ALL_PRODUCTS.filter((product) => {
+    return products.filter((product) => {
       // 1. Category check
       if (product.category.toLowerCase() !== currentCategory.toLowerCase()) {
         return false;
@@ -76,7 +90,7 @@ function CategoryPageContent() {
       }
       return true;
     });
-  }, [currentCategory, maxPrice, selectedBrands, minRating]);
+  }, [currentCategory, maxPrice, selectedBrands, minRating, products]);
 
   const handleAddToCart = (product: Product, e: React.MouseEvent) => {
     e.stopPropagation();

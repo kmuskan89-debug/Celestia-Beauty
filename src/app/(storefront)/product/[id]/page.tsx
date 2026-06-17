@@ -1,10 +1,10 @@
 "use client";
 
-import React, { useState, use } from "react";
+import React, { useState, useEffect, use } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import styles from "./page.module.css";
-import { ALL_PRODUCTS } from "../../../../data/products";
+import { Product, ALL_PRODUCTS } from "../../../../data/products";
 import { useCart } from "../../../../context/CartContext";
 import { useWishlist } from "../../../../context/WishlistContext";
 import { useRouter } from "next/navigation";
@@ -16,12 +16,38 @@ interface PageProps {
 export default function ProductDetailPage({ params }: PageProps) {
   const { id } = use(params);
   const productId = parseInt(id, 10);
-  const product = ALL_PRODUCTS.find((p) => p.id === productId);
+
+  const [mounted, setMounted] = useState(false);
+  const [product, setProduct] = useState<Product | null>(() => {
+    return ALL_PRODUCTS.find((p) => p.id === productId) || null;
+  });
+
+  useEffect(() => {
+    const savedProducts = localStorage.getItem("celestia_admin_products");
+    const allProds: Product[] = savedProducts ? JSON.parse(savedProducts) : ALL_PRODUCTS;
+    const found = allProds.find((p) => p.id === productId);
+
+    const timer = setTimeout(() => {
+      setMounted(true);
+      setProduct(found || null);
+    }, 0);
+    return () => clearTimeout(timer);
+  }, [productId]);
 
   const [quantity, setQuantity] = useState(1);
   const { addToCart } = useCart();
   const { toggleWishlist, isInWishlist } = useWishlist();
   const router = useRouter();
+
+  if (!mounted && !product) {
+    return (
+      <div className={styles.container}>
+        <div className={styles.notFoundSection}>
+          <h1 className={styles.notFoundTitle}>Loading Product...</h1>
+        </div>
+      </div>
+    );
+  }
 
   if (!product) {
     return (

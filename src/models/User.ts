@@ -20,6 +20,11 @@ const userSchema = new Schema(
       required: [true, 'Please provide a password.'],
       minlength: [6, 'Password must be at least 6 characters.'],
     },
+    role: {
+      type: String,
+      enum: ['Customer', 'Vendor', 'Administrator'],
+      default: 'Customer',
+    },
   },
   { timestamps: true }
 );
