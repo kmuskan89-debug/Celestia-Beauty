@@ -24,7 +24,17 @@ export default function ProductDetailPage({ params }: PageProps) {
 
   useEffect(() => {
     const savedProducts = localStorage.getItem("celestia_admin_products");
-    const allProds: Product[] = savedProducts ? JSON.parse(savedProducts) : ALL_PRODUCTS;
+    let allProds = ALL_PRODUCTS;
+    if (savedProducts) {
+      try {
+        const parsedSaved: Product[] = JSON.parse(savedProducts);
+        const originalIds = new Set(ALL_PRODUCTS.map((p) => p.id));
+        const adminAdded = parsedSaved.filter((p) => !originalIds.has(p.id));
+        allProds = [...ALL_PRODUCTS, ...adminAdded];
+      } catch (e) {
+        console.error("Error parsing saved products:", e);
+      }
+    }
     const found = allProds.find((p) => p.id === productId);
 
     const timer = setTimeout(() => {
@@ -118,7 +128,7 @@ export default function ProductDetailPage({ params }: PageProps) {
         image: product.image,
       });
     }
-    router.push("/cart");
+    router.push(`/cart?buyNow=${product.id}`);
   };
 
   return (

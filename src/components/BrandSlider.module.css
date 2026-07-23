@@ -90,7 +90,7 @@
   margin: 0;
   letter-spacing: 0.02em;
   line-height: 1.3;
-  color: var(--celestia-charcoal);
+  color: #ffffff;
 }
 
 .campaignDesc {
@@ -98,7 +98,7 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: var(--celestia-sunset-orange);
+  color: var(--celestia-soft-peach);
   margin-top: 0.15rem;
   display: block;
 }
@@ -121,7 +121,7 @@
 }
 
 .cardTitle {
-  color: var(--celestia-charcoal);
+  color: #ffffff;
   font-family: var(--font-serif);
   font-size: 1.25rem;
   font-weight: 800;
@@ -130,7 +130,7 @@
 }
 
 .cardSubtitle {
-  color: var(--celestia-gray);
+  color: var(--celestia-light-gray);
   font-size: 0.75rem;
   font-weight: 600;
   margin: 0;

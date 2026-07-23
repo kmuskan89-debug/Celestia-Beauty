@@ -1,12 +1,13 @@
 "use client";
 
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, Suspense } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { useCart } from "../../../context/CartContext";
 import styles from "./page.module.css";
 
-export default function CartPage() {
+function CartPageContent() {
   const { cart: items, updateQuantity, removeFromCart } = useCart();
   const [promoCode, setPromoCode] = useState("");
   const [appliedDiscount, setAppliedDiscount] = useState<{
@@ -16,6 +17,18 @@ export default function CartPage() {
   } | null>(null);
   const [promoError, setPromoError] = useState("");
   const [promoSuccess, setPromoSuccess] = useState("");
+
+  const searchParams = useSearchParams();
+  const buyNowIdStr = searchParams ? searchParams.get("buyNow") : null;
+  const buyNowId = buyNowIdStr ? parseInt(buyNowIdStr, 10) : null;
+
+  // Filter items if in Buy Now mode
+  const displayedItems = useMemo(() => {
+    if (buyNowId !== null) {
+      return items.filter((item) => item.id === buyNowId);
+    }
+    return items;
+  }, [items, buyNowId]);
 
   // Handler for Coupon application
   const handleApplyPromo = (e: React.FormEvent) => {
@@ -48,8 +61,8 @@ export default function CartPage() {
 
   // Cart math calculations
   const subtotal = useMemo(() => {
-    return items.reduce((sum, item) => sum + item.price * item.quantity, 0);
-  }, [items]);
+    return displayedItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  }, [displayedItems]);
 
   const discountAmount = useMemo(() => {
     if (!appliedDiscount) return 0;
@@ -63,12 +76,12 @@ export default function CartPage() {
   }, [appliedDiscount, subtotal]);
 
   const shippingCost = useMemo(() => {
-    if (items.length === 0) return 0;
+    if (displayedItems.length === 0) return 0;
     if (appliedDiscount?.code === "FREESHIP") return 0;
     // Free shipping above ₹499 after discount
     const discountedTotal = subtotal - discountAmount;
     return discountedTotal >= 499 ? 0 : 99;
-  }, [items, subtotal, discountAmount, appliedDiscount]);
+  }, [displayedItems, subtotal, discountAmount, appliedDiscount]);
 
   const estimatedTax = useMemo(() => {
     const taxableTotal = subtotal - discountAmount;
@@ -96,18 +109,32 @@ export default function CartPage() {
 
       {/* Header section */}
       <header className={styles.headerSection}>
-        <h1 className={styles.pageTitle}>Shopping Bag</h1>
+        <h1 className={styles.pageTitle}>
+          {buyNowId !== null ? "Checkout" : "Shopping Bag"}
+        </h1>
         <p className={styles.pageSubtitle}>
-          Review your selection of premium cosmetics and skincare before finishing checkout.
+          {buyNowId !== null 
+            ? "Review your product details and finalize your checkout below."
+            : "Review your selection of premium cosmetics and skincare before finishing checkout."}
         </p>
       </header>
 
+      {/* Buy Now Notification Banner */}
+      {buyNowId !== null && items.length > 1 && (
+        <div className="bg-amber-50 border border-amber-200 text-amber-800 px-4 py-3 rounded-xl mb-6 text-sm flex flex-col sm:flex-row gap-2 justify-between items-center text-center sm:text-left">
+          <span>You are checking out a single item from your "Buy Now" selection.</span>
+          <Link href="/cart" className="underline font-bold hover:text-amber-950">
+            View complete shopping bag ({items.length} items)
+          </Link>
+        </div>
+      )}
+
       {/* Main Content Split */}
-      {items.length > 0 ? (
+      {displayedItems.length > 0 ? (
         <div className={styles.mainContent}>
           {/* Left Column: Cart items list */}
           <main className={styles.cartList}>
-            {items.map((item) => (
+            {displayedItems.map((item) => (
               <div key={item.id} className={styles.cartItem}>
                 {/* Image wrapper */}
                 <div className={styles.itemImageWrapper}>
@@ -272,5 +299,13 @@ export default function CartPage() {
         </main>
       )}
     </div>
+  );
+}
+
+export default function CartPage() {
+  return (
+    <Suspense fallback={<div className="max-w-[1200px] mx-auto px-4 py-8 text-center text-neutral-500">Loading Shopping Bag...</div>}>
+      <CartPageContent />
+    </Suspense>
   );
 }

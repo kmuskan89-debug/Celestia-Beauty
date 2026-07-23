@@ -6,6 +6,8 @@ import styles from "./page.module.css";
 import { useCart } from "../../../context/CartContext";
 import { useWishlist } from "../../../context/WishlistContext";
 import { useRouter } from "next/navigation";
+import ProductCard from "../../../components/ProductCard";
+import { Product as GlobalProduct } from "../../../data/products";
 
 interface Product {
   id: number;
@@ -242,7 +244,7 @@ export default function NewLaunchesPage() {
       price: parseFloat(product.price.replace(/[^\d.]/g, "")),
       image: product.image,
     });
-    router.push("/cart");
+    router.push(`/cart?buyNow=${product.id}`);
   };
 
   const handleCardClick = (name: string) => {
@@ -274,93 +276,31 @@ export default function NewLaunchesPage() {
           </div>
 
           <div className={styles.grid}>
-            {section.products.map((product) => (
-              <div
-                key={product.id}
-                className={styles.card}
-                onClick={() => handleCardClick(product.name)}
-              >
-                {/* Wishlist Button Overlay */}
-                <button
-                  className={styles.wishlistBtn}
-                  onClick={(e) => handleToggleWishlist(product, section.name, e)}
-                  aria-label="Add to Wishlist"
-                >
-                  <svg
-                    className={styles.wishlistIcon}
-                    width="18"
-                    height="18"
-                    viewBox="0 0 24 24"
-                    fill={isInWishlist(product.id) ? "currentColor" : "none"}
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-                  </svg>
-                </button>
-
-                {/* Product Image */}
-                <div className={styles.imageWrapper}>
-                  <Image
-                    src={product.image}
-                    alt={product.name}
-                    fill
-                    className={styles.image}
-                    sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                  />
-                </div>
-
-                {/* Product Info */}
-                <div className={styles.info}>
-                  {/* Star Rating */}
-                  <div className={styles.ratingContainer}>
-                    <div className={styles.stars}>
-                      {Array.from({ length: 5 }).map((_, index) => (
-                        <svg
-                          key={index}
-                          width="12"
-                          height="12"
-                          viewBox="0 0 24 24"
-                          fill={index < product.rating ? "currentColor" : "none"}
-                          stroke="currentColor"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        >
-                          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                        </svg>
-                      ))}
-                    </div>
-                    <span className={styles.reviewsCount}>({product.reviews})</span>
-                  </div>
-
-                  {/* Product Details */}
-                  <h3 className={styles.name}>{product.name}</h3>
-                  <p className={styles.details}>{product.details}</p>
-
-                  {/* Card Footer: Price & Add-To-Cart */}
-                  <div className={styles.cardFooter}>
-                    <span className={styles.price}>{product.price}</span>
-                    <div className={styles.actionButtons}>
-                      <button
-                        className={styles.addToCartBtn}
-                        onClick={(e) => handleAddToCart(product, section.name, e)}
-                      >
-                        Add
-                      </button>
-                      <button
-                        className={styles.buyBtn}
-                        onClick={(e) => handleBuy(product, section.name, e)}
-                      >
-                        Buy
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
+            {section.products.map((product) => {
+              const mappedProduct: GlobalProduct = {
+                id: product.id,
+                name: product.name,
+                brand: section.name,
+                category: "",
+                price: parseFloat(product.price.replace(/[^\d.]/g, "")),
+                rating: product.rating,
+                reviews: product.reviews,
+                details: product.details,
+                image: product.image,
+              };
+              return (
+                <ProductCard
+                  key={product.id}
+                  product={mappedProduct}
+                  isWishlisted={isInWishlist(product.id)}
+                  onToggleWishlist={(p, e) => handleToggleWishlist(product, section.name, e)}
+                  onAddToCart={(p, e) => handleAddToCart(product, section.name, e)}
+                  onBuy={(p, e) => handleBuy(product, section.name, e)}
+                  href="#"
+                  onClick={() => handleCardClick(product.name)}
+                />
+              );
+            })}
           </div>
         </section>
       ))}

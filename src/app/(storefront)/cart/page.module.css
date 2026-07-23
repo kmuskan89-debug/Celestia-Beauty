@@ -449,3 +449,44 @@
     transform: translateY(0);
   }
 }
+
+@media (max-width: 768px) {
+  .container {
+    padding: 1.5rem 1rem 3rem;
+    gap: 1.5rem;
+  }
+  .pageTitle {
+    font-size: 1.85rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .cartItem {
+    padding: 1rem;
+    gap: 1rem;
+  }
+  .itemImageWrapper {
+    width: 80px;
+    height: 80px;
+  }
+  .name {
+    font-size: 0.9rem;
+  }
+  .price {
+    font-size: 0.95rem;
+  }
+  .qtyContainer {
+    gap: 0.5rem;
+    padding: 0.2rem 0.4rem;
+  }
+  .qtyBtn {
+    width: 20px;
+    height: 20px;
+    font-size: 0.9rem;
+  }
+  .qtyCount {
+    font-size: 0.8rem;
+    min-width: 12px;
+  }
+}
+

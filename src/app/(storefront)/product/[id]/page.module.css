@@ -371,3 +371,45 @@
   background-color: var(--celestia-burnt-orange);
   box-shadow: 0 6px 20px rgba(255, 95, 31, 0.25);
 }
+
+@media (max-width: 768px) {
+  .container {
+    padding: 1.5rem 1rem 3rem;
+    gap: 1.5rem;
+  }
+  .title {
+    font-size: 1.85rem;
+  }
+  .price {
+    font-size: 1.75rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .buttonsRow {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-areas: 
+      "add wishlist"
+      "buy buy";
+    gap: 0.75rem;
+  }
+  .addToCartBtn {
+    grid-area: add;
+    width: 100%;
+    padding: 0.95rem 1rem;
+    font-size: 0.9rem;
+  }
+  .wishlistBtn {
+    grid-area: wishlist;
+    width: 56px;
+    height: 56px;
+  }
+  .buyBtn {
+    grid-area: buy;
+    width: 100%;
+    padding: 0.95rem 1rem;
+    font-size: 0.9rem;
+  }
+}
+

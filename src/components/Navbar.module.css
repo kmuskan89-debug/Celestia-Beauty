@@ -355,3 +355,16 @@
   80% { transform: scale(1.2); }
   100% { transform: scale(1); opacity: 1; }
 }
+
+@media (max-width: 768px) {
+  .navbar {
+    padding: 1rem;
+  }
+  .actions {
+    gap: 0.75rem;
+  }
+  .logo {
+    font-size: 1.5rem;
+  }
+}
+

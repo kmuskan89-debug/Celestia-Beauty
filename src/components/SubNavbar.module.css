@@ -78,3 +78,15 @@
   transform: scaleX(1);
   transform-origin: left;
 }
+
+@media (max-width: 768px) {
+  .subNavbar {
+    justify-content: flex-start;
+  }
+  .container {
+    justify-content: flex-start;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+

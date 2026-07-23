@@ -1,10 +1,12 @@
 "use client";
 
 import React from "react";
-import Image from "next/image";
 import { useCart } from "../context/CartContext";
 import { useRouter } from "next/navigation";
 import styles from "./BrandDeals.module.css";
+import ProductCard from "./ProductCard";
+import { Product as GlobalProduct } from "../data/products";
+import { useWishlist } from "../context/WishlistContext";
 
 interface Product {
   id: number;
@@ -21,6 +23,7 @@ interface Product {
 export default function BrandDeals() {
   const { addToCart } = useCart();
   const router = useRouter();
+  const { toggleWishlist, isInWishlist } = useWishlist();
 
   const products: Product[] = [
     {
@@ -352,7 +355,7 @@ export default function BrandDeals() {
       price: product.priceDeal * 80,
       image: product.image,
     });
-    router.push("/cart");
+    router.push(`/cart?buyNow=${product.id}`);
   };
 
   return (
@@ -363,73 +366,37 @@ export default function BrandDeals() {
       </div>
 
       <div className={styles.grid}>
-        {products.map((product) => (
-          <div key={product.id} className={styles.card}>
-            {/* Product Image */}
-            <div className={styles.imageWrapper}>
-              <Image
-                src={product.image}
-                alt={product.name}
-                fill
-                sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                className={styles.image}
-              />
-            </div>
-
-            {/* Details */}
-            <div className={styles.info}>
-              <span className={styles.brand}>{product.brand}</span>
-              <h3 className={styles.name}>{product.name}</h3>
-
-              {/* Rating block */}
-              <div className={styles.ratingContainer}>
-                <div className={styles.stars}>
-                  {Array.from({ length: 5 }).map((_, index) => (
-                    <svg
-                      key={index}
-                      width="12"
-                      height="12"
-                      viewBox="0 0 24 24"
-                      fill={index < product.rating ? "currentColor" : "none"}
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                    </svg>
-                  ))}
-                </div>
-                <span className={styles.reviewsCount}>({product.reviews})</span>
-              </div>
-
-              {/* Pricing & Add */}
-              <div className={styles.footer}>
-                <div className={styles.priceContainer}>
-                  <div className={styles.priceRow}>
-                    <span className={styles.priceDeal}>₹{product.priceDeal * 80}.00</span>
-                    <span className={styles.priceOriginal}>₹{product.priceOriginal * 80}.00</span>
-                  </div>
-                  <span className={styles.discountTag}>{product.discount}</span>
-                </div>
-                <div className={styles.actionButtons}>
-                  <button
-                    className={styles.addToCartBtn}
-                    onClick={() => handleAddToCart(product)}
-                  >
-                    Add
-                  </button>
-                  <button
-                    className={styles.buyBtn}
-                    onClick={() => handleBuy(product)}
-                  >
-                    Buy
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        ))}
+        {products.map((product) => {
+          const mappedProduct: GlobalProduct = {
+            id: product.id,
+            name: product.name,
+            brand: product.brand,
+            category: "",
+            price: product.priceDeal,
+            rating: product.rating,
+            reviews: product.reviews,
+            details: "",
+            image: product.image,
+          };
+          return (
+            <ProductCard
+              key={product.id}
+              product={mappedProduct}
+              isWishlisted={isInWishlist(product.id)}
+              onToggleWishlist={(p, e) => toggleWishlist({
+                id: product.id,
+                name: product.name,
+                brand: product.brand,
+                price: product.priceDeal * 80,
+                rating: product.rating,
+                reviews: product.reviews,
+                image: product.image,
+              })}
+              onAddToCart={(p, e) => handleAddToCart(product)}
+              onBuy={(p, e) => handleBuy(product)}
+            />
+          );
+        })}
       </div>
     </section>
   );

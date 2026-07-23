@@ -67,7 +67,17 @@ export function AdminProvider({ children }: { children: React.ReactNode }) {
       })
       .catch((err) => console.error("Error loading users from DB:", err));
 
-    const initialProducts = savedProducts ? JSON.parse(savedProducts) : ALL_PRODUCTS;
+    let initialProducts = ALL_PRODUCTS;
+    if (savedProducts) {
+      try {
+        const parsedSaved: Product[] = JSON.parse(savedProducts);
+        const originalIds = new Set(ALL_PRODUCTS.map((p) => p.id));
+        const adminAdded = parsedSaved.filter((p) => !originalIds.has(p.id));
+        initialProducts = [...ALL_PRODUCTS, ...adminAdded];
+      } catch (e) {
+        console.error("Error parsing saved products:", e);
+      }
+    }
     const initialCoupons = savedCoupons
       ? JSON.parse(savedCoupons)
       : [

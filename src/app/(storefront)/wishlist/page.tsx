@@ -1,12 +1,13 @@
 "use client";
 
 import React from "react";
-import Image from "next/image";
 import Link from "next/link";
 import styles from "./page.module.css";
 import { useCart } from "../../../context/CartContext";
 import { useWishlist, WishlistItem } from "../../../context/WishlistContext";
 import { useRouter } from "next/navigation";
+import ProductCard from "../../../components/ProductCard";
+import { Product } from "../../../data/products";
 
 export default function WishlistPage() {
   const { wishlist, removeFromWishlist } = useWishlist();
@@ -32,7 +33,7 @@ export default function WishlistPage() {
       price: item.price,
       image: item.image,
     });
-    router.push("/cart");
+    router.push(`/cart?buyNow=${item.id}`);
   };
 
   return (
@@ -57,86 +58,29 @@ export default function WishlistPage() {
       {/* Main Content Area */}
       {wishlist.length > 0 ? (
         <main className={styles.grid}>
-          {wishlist.map((item) => (
-            <div key={item.id} className={styles.card}>
-              {/* Image and Remove button */}
-              <div className={styles.imageWrapper}>
-                <Image
-                  src={item.image}
-                  alt={item.name}
-                  fill
-                  className={styles.image}
-                  sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                />
-                <button
-                  onClick={() => removeFromWishlist(item.id)}
-                  className={styles.removeBtn}
-                  aria-label={`Remove ${item.name} from Wishlist`}
-                >
-                  <svg
-                    className={styles.removeIcon}
-                    width="18"
-                    height="18"
-                    viewBox="0 0 24 24"
-                    fill="currentColor"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-                  </svg>
-                </button>
-              </div>
-
-              {/* Product Info details */}
-              <div className={styles.info}>
-                <span className={styles.brand}>{item.brand}</span>
-                <h2 className={styles.name}>{item.name}</h2>
-
-                {/* Rating blocks */}
-                <div className={styles.ratingContainer}>
-                  <div className={styles.stars}>
-                    {Array.from({ length: 5 }).map((_, index) => (
-                      <svg
-                        key={index}
-                        width="11"
-                        height="11"
-                        viewBox="0 0 24 24"
-                        fill={index < item.rating ? "currentColor" : "none"}
-                        stroke="currentColor"
-                        strokeWidth="2.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      >
-                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                      </svg>
-                    ))}
-                  </div>
-                  <span className={styles.reviewsCount}>({item.reviews})</span>
-                </div>
-
-                {/* Footer price and CTA */}
-                <div className={styles.cardFooter}>
-                  <span className={styles.price}>₹{item.price}.00</span>
-                  <div className={styles.actionButtons}>
-                    <button
-                      onClick={() => handleAddToCart(item)}
-                      className={styles.addToCartBtn}
-                    >
-                      Add
-                    </button>
-                    <button
-                      onClick={() => handleBuy(item)}
-                      className={styles.buyBtn}
-                    >
-                      Buy
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          ))}
+          {wishlist.map((item) => {
+            const mappedProduct: Product = {
+              id: item.id,
+              name: item.name,
+              brand: item.brand,
+              category: "",
+              price: item.price,
+              rating: item.rating,
+              reviews: item.reviews,
+              details: "",
+              image: item.image,
+            };
+            return (
+              <ProductCard
+                key={item.id}
+                product={mappedProduct}
+                isWishlisted={true}
+                onToggleWishlist={() => removeFromWishlist(item.id)}
+                onAddToCart={() => handleAddToCart(item)}
+                onBuy={() => handleBuy(item)}
+              />
+            );
+          })}
         </main>
       ) : (
         /* Empty State Fallback */

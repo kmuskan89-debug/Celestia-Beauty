@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState, useEffect, useMemo, Suspense } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { useSearchParams, useRouter } from "next/navigation";
 import BrandSlider from "../../../components/BrandSlider";
@@ -9,8 +8,8 @@ import SubNavbar from "../../../components/SubNavbar";
 import { useCart } from "../../../context/CartContext";
 import { useWishlist } from "../../../context/WishlistContext";
 import styles from "./page.module.css";
-
 import { Product, ALL_PRODUCTS } from "../../../data/products";
+import ProductCard from "../../../components/ProductCard";
 
 function CategoryPageContent() {
   const searchParams = useSearchParams();
@@ -24,13 +23,21 @@ function CategoryPageContent() {
 
   useEffect(() => {
     const savedProducts = localStorage.getItem("celestia_admin_products");
+    let allProds = ALL_PRODUCTS;
     if (savedProducts) {
-      const parsed = JSON.parse(savedProducts);
-      const timer = setTimeout(() => {
-        setProducts(parsed);
-      }, 0);
-      return () => clearTimeout(timer);
+      try {
+        const parsedSaved: Product[] = JSON.parse(savedProducts);
+        const originalIds = new Set(ALL_PRODUCTS.map((p) => p.id));
+        const adminAdded = parsedSaved.filter((p) => !originalIds.has(p.id));
+        allProds = [...ALL_PRODUCTS, ...adminAdded];
+      } catch (e) {
+        console.error("Error parsing saved products:", e);
+      }
     }
+    const timer = setTimeout(() => {
+      setProducts(allProds);
+    }, 0);
+    return () => clearTimeout(timer);
   }, []);
 
   // Filter States
@@ -115,7 +122,7 @@ function CategoryPageContent() {
       price: product.price * 80,
       image: product.image,
     });
-    router.push("/cart");
+    router.push(`/cart?buyNow=${product.id}`);
   };
 
   return (
@@ -232,87 +239,14 @@ function CategoryPageContent() {
           {filteredProducts.length > 0 ? (
             <div className={styles.grid}>
               {filteredProducts.map((product) => (
-                <div key={product.id} className={styles.card}>
-                  {/* Wishlist Heart */}
-                  <button
-                    className={styles.wishlistBtn}
-                    onClick={(e) => handleToggleWishlist(product, e)}
-                    aria-label="Add to Wishlist"
-                  >
-                    <svg
-                      className={styles.wishlistIcon}
-                      width="18"
-                      height="18"
-                      viewBox="0 0 24 24"
-                      fill={isInWishlist(product.id) ? "currentColor" : "none"}
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-                    </svg>
-                  </button>
-
-                  <Link href={`/product/${product.id}`} className="no-underline text-inherit flex flex-col flex-1 h-full">
-                    {/* Image wrapper */}
-                    <div className={styles.imageWrapper}>
-                      <Image
-                        src={product.image}
-                        alt={product.name}
-                        fill
-                        className={styles.image}
-                        sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                      />
-                    </div>
-
-                    {/* Info */}
-                    <div className={styles.info}>
-                      <div className={styles.ratingContainer}>
-                        <div className={styles.stars}>
-                          {Array.from({ length: 5 }).map((_, index) => (
-                            <svg
-                              key={index}
-                              width="12"
-                              height="12"
-                              viewBox="0 0 24 24"
-                              fill={index < product.rating ? "currentColor" : "none"}
-                              stroke="currentColor"
-                              strokeWidth="2"
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                            >
-                              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                            </svg>
-                          ))}
-                        </div>
-                        <span className={styles.reviewsCount}>({product.reviews})</span>
-                      </div>
-
-                      <h3 className={styles.name}>{product.name}</h3>
-                      <p className={styles.details}>{product.details}</p>
-
-                      {/* Footer price/cart */}
-                      <div className={styles.cardFooter}>
-                        <span className={styles.price}>₹{product.price * 80}.00</span>
-                        <div className={styles.actionButtons}>
-                          <button
-                            className={styles.addToCartBtn}
-                            onClick={(e) => handleAddToCart(product, e)}
-                          >
-                            Add
-                          </button>
-                          <button
-                            className={styles.buyBtn}
-                            onClick={(e) => handleBuy(product, e)}
-                          >
-                            Buy
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </Link>
-                </div>
+                <ProductCard
+                  key={product.id}
+                  product={product}
+                  isWishlisted={isInWishlist(product.id)}
+                  onToggleWishlist={handleToggleWishlist}
+                  onAddToCart={handleAddToCart}
+                  onBuy={handleBuy}
+                />
               ))}
             </div>
           ) : (
