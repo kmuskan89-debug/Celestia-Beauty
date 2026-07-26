@@ -22,6 +22,14 @@ export default function ProductDetailPage({ params }: PageProps) {
     return ALL_PRODUCTS.find((p) => p.id === productId) || null;
   });
 
+  const [imgSrc, setImgSrc] = useState("/product.png");
+
+  useEffect(() => {
+    if (product) {
+      setImgSrc(product.image || "/product.png");
+    }
+  }, [product]);
+
   useEffect(() => {
     const savedProducts = localStorage.getItem("celestia_admin_products");
     let allProds = ALL_PRODUCTS;
@@ -151,12 +159,16 @@ export default function ProductDetailPage({ params }: PageProps) {
         <div className={styles.imageColumn}>
           <div className={styles.imageWrapper}>
             <Image
-              src={product.image}
+              src={imgSrc}
               alt={product.name}
               fill
               priority
               className={styles.image}
               sizes="(max-width: 768px) 100vw, 50vw"
+              onError={() => {
+                console.error(`[ProductDetails Error] Failed to load image for product #${product.id}: "${product.image}". Falling back to placeholder.`);
+                setImgSrc("/product.png");
+              }}
             />
           </div>
         </div>

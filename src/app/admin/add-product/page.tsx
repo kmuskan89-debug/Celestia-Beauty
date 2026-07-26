@@ -224,7 +224,7 @@ export default function AdminAddProduct() {
             name="longDescription"
             rows={4}
             placeholder="Provide a detailed writeup of ingredients, directions, and product benefits..."
-            className="w-full px-4 py-2.5 rounded-xl border border-[#f2e7e3] text-sm text-[#2d2422] focus:outline-none focus:border-[#ff5f1f] bg-[#FAF6F5] transition-all resize-y w-full"
+            className="w-full px-4 py-2.5 rounded-xl border border-[#f2e7e3] text-sm text-[#2d2422] focus:outline-none focus:border-[#ff5f1f] bg-[#FAF6F5] transition-all resize-y"
           ></textarea>
         </div>
 

@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Product } from "../data/products";
@@ -38,6 +38,12 @@ export default function ProductCard({
 
   const targetHref = href || `/product/${product.id}`;
 
+  const [imgSrc, setImgSrc] = useState(product.image || "/product.png");
+
+  useEffect(() => {
+    setImgSrc(product.image || "/product.png");
+  }, [product.image]);
+
   return (
     <Link 
       href={targetHref}
@@ -48,11 +54,15 @@ export default function ProductCard({
       {/* Product Image Wrapper - Occupies ~60-65% height */}
       <div className="relative w-full h-[235px] xs:h-[250px] md:h-[280px] bg-[#FAF6F5] overflow-hidden flex items-center justify-center">
         <Image
-          src={product.image}
+          src={imgSrc}
           alt={product.name}
           fill
           sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
           className="object-contain p-4 group-hover:scale-105 transition-transform duration-500 ease-out"
+          onError={() => {
+            console.error(`[ProductCard Error] Failed to load image for product #${product.id} ("${product.name}"). Path attempted: "${product.image}". Falling back to placeholder.`);
+            setImgSrc("/product.png");
+          }}
         />
 
         {/* Rating Pill Overlay */}

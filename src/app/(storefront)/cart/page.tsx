@@ -6,6 +6,28 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useCart } from "../../../context/CartContext";
 import styles from "./page.module.css";
+import { useEffect } from "react";
+
+function CartItemImage({ src, alt }: { src: string; alt: string }) {
+  const [imgSrc, setImgSrc] = useState(src || "/product.png");
+  useEffect(() => {
+    setImgSrc(src || "/product.png");
+  }, [src]);
+
+  return (
+    <Image
+      src={imgSrc}
+      alt={alt}
+      fill
+      className={styles.itemImage}
+      sizes="100px"
+      onError={() => {
+        console.error(`[CartImage Error] Failed to load image: "${src}". Falling back to placeholder.`);
+        setImgSrc("/product.png");
+      }}
+    />
+  );
+}
 
 function CartPageContent() {
   const { cart: items, updateQuantity, removeFromCart } = useCart();
@@ -138,13 +160,7 @@ function CartPageContent() {
               <div key={item.id} className={styles.cartItem}>
                 {/* Image wrapper */}
                 <div className={styles.itemImageWrapper}>
-                  <Image
-                    src={item.image}
-                    alt={item.name}
-                    fill
-                    className={styles.itemImage}
-                    sizes="100px"
-                  />
+                  <CartItemImage src={item.image} alt={item.name} />
                 </div>
 
                 {/* Details info */}

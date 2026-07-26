@@ -22,7 +22,7 @@ export const ALL_PRODUCTS: Product[] = [
     rating: 5,
     reviews: 340,
     details: "Super stay vinyl ink liquid lipstick for 16hr wear.",
-    image: "https://static.beautytocare.com/cdn-cgi/image/width=1600,height=1600,f=auto/media/catalog/product//m/a/maybelline-superstay-vinil-ink-liquid-lipstick-55-royal.jpg",
+    image: "/products/maybelline-vinyl-ink-liquid-lipstick.webp",
     longDescription: "Get the lock-in shine and color with Maybelline Super Stay Vinyl Ink. This liquid lipstick delivers no-budge vinyl color with a 16-hour wear guarantee. Featuring an innovative color-lock formula that resists smudging and transfer, it leaves a comfortable, high-shine finish from morning to night."
   },
   {
@@ -34,7 +34,7 @@ export const ALL_PRODUCTS: Product[] = [
     rating: 5,
     reviews: 450,
     details: "Infinite length and volume lashes sky high mascara.",
-    image: "https://m.media-amazon.com/images/I/71frVkTEtHL.jpg",
+    image: "/products/maybelline-sky-high-waterproof-mascara.webp",
     longDescription: "Sky High lash impact from every angle! Lash Sensational Sky High Mascara delivers full volume and limitless length. The exclusive Flex Tower mascara brush bends to volumize and extend every single lash from root to tip. Infused with bamboo extract and fibers for long, full lashes that never get weighed down."
   },
   {
@@ -46,7 +46,7 @@ export const ALL_PRODUCTS: Product[] = [
     rating: 5,
     reviews: 110,
     details: "High-definition matte lipstick for ultimate comfort.",
-    image: "https://m.media-amazon.com/images/I/61yZJB6YxCL.jpg",
+    image: "/products/faces-canada-ultime-pro-hd-matte-lip.webp",
     longDescription: "Faces Canada Ultime Pro HD Matte Lipstick offers highly pigmented colors that stay put all day. Its feather-light formula glides smoothly onto the lips, leaving a flawless high-definition matte finish. Packed with skin-loving ingredients to keep your lips moisturized and cracking-free."
   },
   {
@@ -58,7 +58,7 @@ export const ALL_PRODUCTS: Product[] = [
     rating: 5,
     reviews: 120,
     details: "Velvet feel luxury matte lipstick in signature shades.",
-    image: "https://images-static.nykaa.com/media/catalog/product/d/5/d5bafbb8904330901506_1.jpg?tr=w-500",
+    image: "/products/k-beauty-matte-drama-lipstick.webp",
     longDescription: "Curated for the ultimate luxury feel, the K-Beauty Matte Drama Lipstick is a premium lipstick that wraps your lips in rich, velvet matte colors. Highly buildable and velvety, it delivers signature shades that adapt elegantly to every skin tone while remaining soft and lightweight."
   },
   {
@@ -70,7 +70,7 @@ export const ALL_PRODUCTS: Product[] = [
     rating: 4,
     reviews: 520,
     details: "Natural matte finish liquid foundation.",
-    image: "https://m.media-amazon.com/images/I/71QsfD+b28L._AC_UF1000,1000_QL80_.jpg",
+    image: "/products/maybelline-fit-me-matte-liquid-foundation.webp",
     longDescription: "Maybelline Fit Me Matte + Poreless Liquid Foundation is designed to fit your unique skin tone and texture. Ideal for normal-to-oily skin types, this ultra-lightweight foundation features micro-powders to control shine and blur pores for a natural, seamless matte finish that lasts up to 12 hours."
   },
   {
@@ -82,7 +82,7 @@ export const ALL_PRODUCTS: Product[] = [
     rating: 4,
     reviews: 180,
     details: "Creamy matte lipstick with honey nectar.",
-    image: "https://i5.walmartimages.com/seo/Maybelline-Color-Sensational-Creamy-Matte-Lipstick_4d180912-bf1d-42cc-b41f-3ba42242a748.ff9876cf24f7cf36bc3d8054a00f3ea3.jpeg",
+    image: "/products/maybelline-color-sensational-creamy-matte.webp",
     longDescription: "Maybelline Color Sensational Creamy Mattes deliver rich, warm matte color in a velvety, moisturizing formula. Infused with nourishing honey nectar, this lipstick glides on effortlessly for a smooth, comfortable matte look that keeps lips hydrated and looking plump."
   },
   {
@@ -94,7 +94,7 @@ export const ALL_PRODUCTS: Product[] = [
     rating: 5,
     reviews: 290,
     details: "Sensational full fan effect mascara.",
-    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQcp-Fvdei1EEdpvHKUTBEzzfsWbcqX0al4SQ&s",
+    image: "/products/maybelline-lash-sensational-mascara.webp",
     longDescription: "Reveal layers of lashes for a sensational full-fan effect. The fanning curved brush features ten layers of bristles to capture and coat lashes from root to tip. Washable formula separates and defines lashes without clumping for a dramatic, wide-awake look."
   },
   {
@@ -106,7 +106,7 @@ export const ALL_PRODUCTS: Product[] = [
     rating: 4,
     reviews: 75,
     details: "Long-lasting non-drying liquid matte lipstick.",
-    image: "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcRzuFdjqhANKpUuocONfI4IqRpSD8carzEgvmNDDlGRsNyBVQTA9x-U9esPSTn_Ba0DCPfL6lRmLBxWoVK6Dgxis0pXPRYDEYET9NktXuQUy6krQmuVW0WynDpsUn4NpVu5Jg&usqp=CAc",
+    image: "/products/faces-canada-liquid-velvet-matte-lip.webp",
     longDescription: "A luxurious fluid lip color that glides on like a dream and dries down to a rich, velvety matte finish. Faces Canada Liquid Velvet Matte Lip is specially formulated to deliver long-lasting, transfer-proof wear without stripping your lips of essential hydration."
   },
 
@@ -120,7 +120,7 @@ export const ALL_PRODUCTS: Product[] = [
     rating: 5,
     reviews: 124,
     details: "Facial serum for an ultimate golden hour glow.",
-    image: "https://absolutskincare.com/cdn/shop/files/Radiance_Serum_transparent_background.png?v=1750873369",
+    image: "/products/celestia-lab-sunset-radiance-serum.webp",
     longDescription: "Experience the ultimate skin glow with Sunset Radiance Serum. Packed with vitamin complexes, botanical extracts, and light-reflecting minerals, this luxurious serum hydrates, plumps, and refines skin texture. Perfect as a skin-brightening treatment or a glowing primer under cosmetics."
   },
   {
@@ -132,7 +132,7 @@ export const ALL_PRODUCTS: Product[] = [
     rating: 4,
     reviews: 98,
     details: "Nourishing hydration cream packed with botanical blossoms.",
-    image: "https://www.gosupps.com/media/catalog/product/6/1/61Ayr0wq8rL.jpg",
+    image: "/products/celestia-lab-amber-glow-moisturizer.webp",
     longDescription: "Restore and locks in moisture with the Amber Glow Moisturizer. Formulated with rich botanical oils, squalane, and honey-orange blossom extracts, this luxurious face cream repairs dry skin and delivers a dewy, radiant finish that keeps your face refreshed all day long."
   },
   {
@@ -144,7 +144,7 @@ export const ALL_PRODUCTS: Product[] = [
     rating: 5,
     reviews: 145,
     details: "Lightweight cream loaded with triple vitamin C.",
-    image: "https://m.media-amazon.com/images/I/61mRtf8GSPL._AC_UF1000,1000_QL80_.jpg",
+    image: "/products/dot-key-vitamin-ce-glow-cream.webp",
     longDescription: "Revitalize dull, tired skin with Dot & Key's Vitamin C+E Glow Cream. A lightweight gel-cream formula packed with Kakadu plum extract, triple vitamin C, and vitamin E. It fights free radicals, fades dark spots, and infuses your skin with long-lasting hydration."
   },
   {
@@ -156,7 +156,7 @@ export const ALL_PRODUCTS: Product[] = [
     rating: 5,
     reviews: 94,
     details: "Sunscreen gel with cooling watermelon extract.",
-    image: "https://m.media-amazon.com/images/I/61-k3cC0kzL._AC_UF1000,1000_QL80_.jpg",
+    image: "/products/dot-key-watermelon-spf-50-matte-gel.webp",
     longDescription: "Get ultimate sun protection and oil control with the Watermelon Matte Sunscreen Gel. Boasting SPF 50 PA+++ broad-spectrum filters, this lightweight water-gel formula is infused with fresh watermelon extracts and hyaluronic acid to hydrate the skin while leaving a dry, matte touch."
   },
   {
@@ -168,7 +168,7 @@ export const ALL_PRODUCTS: Product[] = [
     rating: 5,
     reviews: 340,
     details: "Non-foaming face wash for dry skin with hyaluronic acid.",
-    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSm7ZGl8GU5ZpnKN5tokQSf9kz8IO4zRnD_Og&s",
+    image: "/products/cerave-cerave-hydrating-cleanser.webp",
     longDescription: "Developed with dermatologists, CeraVe Hydrating Facial Cleanser is a gentle face wash containing three essential ceramides and hyaluronic acid. It cleanses, hydrates, and helps restore the protective skin barrier without stripping away vital moisture or leaving a tight feel."
   },
   {
@@ -180,7 +180,7 @@ export const ALL_PRODUCTS: Product[] = [
     rating: 4,
     reviews: 110,
     details: "Daily sun protection with pollution defense.",
-    image: "https://cdn.basler-beauty.de/out/pictures/generated/product/1/980_980_100/2614499-Kiehl-s-Ultra-Light-Daily-UV-Defense-SPF-50-30-ml.95bbd2ee.jpg",
+    image: "/products/kiehls-ultra-light-daily-uv-defense-spf-50.webp",
     longDescription: "Protect your skin from harmful UVA/UVB rays and environmental pollutants. Kiehl's Ultra Light Daily UV Defense is a non-comedogenic, oil-free sunscreen that absorbs quickly and leaves a translucent matte finish. Infused with Baicalin to provide advanced cellular defense."
   },
   {
@@ -192,7 +192,7 @@ export const ALL_PRODUCTS: Product[] = [
     rating: 5,
     reviews: 195,
     details: "Gentle retinol serum for fine lines and skin barrier.",
-    image: "https://optiphar.com/media/22/07/88/1759411611/CeraVe%20Skin%20Renewing%20Retinol%20Serum%2030%20ml%20-%2010.png?ts=1759411616",
+    image: "/products/cerave-retinol-skin-renewing-serum.webp",
     longDescription: "Help reduce the appearance of fine lines, wrinkles, and post-acne marks while supporting your skin barrier. Formulated with encapsulated retinol, ceramides, and hyaluronic acid, this gentle yet effective serum continually refines and resurfaces skin texture over time."
   },
 
@@ -206,7 +206,7 @@ export const ALL_PRODUCTS: Product[] = [
     rating: 5,
     reviews: 85,
     details: "Nourishing shampoo to restore keratin levels.",
-    image: "https://threebs.co/cdn/shop/files/loreal-paris-elseve-keratin-smooth-72h-smoothing-shampoo-620ml-IMG1-20250115_3899266c-f8c2-4b91-969c-7cca57586dce_1200x1200.jpg?v=1736930804",
+    image: "/products/loreal-paris-keratin-smooth-shampoo.webp",
     longDescription: "Restores hair's natural strength and smoothness. L'Oreal Paris Keratin Smooth Shampoo contains Micro-Keratin technology that fills in micro-irregularities along the hair fibers, straightening frizz and leaving hair silky smooth, shiny, and manageable for up to 72 hours."
   },
   {
@@ -218,7 +218,7 @@ export const ALL_PRODUCTS: Product[] = [
     rating: 4,
     reviews: 62,
     details: "Deep conditioning argan oil hair mask.",
-    image: "https://m.media-amazon.com/images/I/51evllh9IAL.jpg",
+    image: "/products/plum-argan-oil-hair-mask.webp",
     longDescription: "A rich, creamy deep-conditioning mask loaded with organic cold-pressed argan oil, shea butter, and plant proteins. Plum Argan Oil Hair Mask works deeply to repair heat-damaged, frizzy, and chemically-treated locks, transforming them into soft, lustrous, and strong tresses."
   },
   {
@@ -230,7 +230,7 @@ export const ALL_PRODUCTS: Product[] = [
     rating: 5,
     reviews: 410,
     details: "Highly moisturizing, reparative shampoo.",
-    image: "https://m.media-amazon.com/images/I/611M60Lp3LL._AC_UF1000,1000_QL80_.jpg",
+    image: "/products/olaplex-bond-maintenance-shampoo-no4.webp",
     longDescription: "A highly concentrated, reparative shampoo that hydrates and rebuilds damaged hair bonds. Olaplex No. 4 protects and repairs broken bonds, split ends, and frizz by re-linking broken disulfide bonds. Safe for color-treated hair and proven to reduce breakage and strengthen all hair types."
   },
   {
@@ -242,7 +242,7 @@ export const ALL_PRODUCTS: Product[] = [
     rating: 5,
     reviews: 380,
     details: "Reparative conditioner that eliminates damage and frizz.",
-    image: "https://m.media-amazon.com/images/I/61OLMvoFOHL._AC_UF1000,1000_QL80_.jpg",
+    image: "/products/olaplex-bond-maintenance-conditioner-no5.webp",
     longDescription: "Complement your hair repair routine with Olaplex No. 5. A highly-moisturizing, reparative conditioner that eliminates frizz, split ends, and damage while protecting and rebuilding hair bonds. It leaves hair shiny, strong, and deeply nourished without weighing it down."
   },
   {
@@ -254,7 +254,7 @@ export const ALL_PRODUCTS: Product[] = [
     rating: 4,
     reviews: 85,
     details: "Deep conditioning mask for dry, damaged hair.",
-    image: "https://plumgoodness.com/cdn/shop/files/AvocadoMaskListing11.webp?v=1777573080&width=1001",
+    image: "/products/plum-avocado-hair-mask.webp",
     longDescription: "Give your dry, frizzy hair the ultimate hydration boost with Plum's Avocado Hair Mask. Packed with avocado oil, shea butter, and aloe extracts, this mask deep conditions dry locks, prevents breakage, and leaves hair bouncy, soft, and extremely shiny."
   },
 
@@ -268,7 +268,7 @@ export const ALL_PRODUCTS: Product[] = [
     rating: 5,
     reviews: 120,
     details: "Quick drying ionic hairdryer with diffuser.",
-    image: "https://m.media-amazon.com/images/I/61+oSepuRTL.jpg_BO30,255,255,255_UF750,750_SR1910,1000,0,C_ZJPHNwYW4gZm9yZWdyb3VuZD0iIzBGMTExMSIgZm9udD0iQW1hem9uRW1iZXIgNjYiPjQuMzwvc3Bhbj4=,60,875,420,420,0,0_PIRIOFOURANDHALF-medium-V2,TopLeft,190,885_ZJPHNwYW4gZm9yZWdyb3VuZD0iIzU2NTk1OSIgZm9udD0iQW1hem9uRW1iZXIgNjYiPig3NSk8L3NwYW4+,650,875,420,420,0,0_QL100_.jpg",
+    image: "/products/philips-salon-hair-dryer-pro.webp",
     longDescription: "Philips Salon Hair Dryer Pro features a powerful AC motor that delivers up to 110km/h air speed for fast, professional drying results. Equipped with ionic conditioning, it releases millions of ions to eliminate static, smooth hair cuticles, and amplify shine. Includes a diffuser and concentrator nozzle."
   },
   {
@@ -280,7 +280,7 @@ export const ALL_PRODUCTS: Product[] = [
     rating: 4,
     reviews: 94,
     details: "Ceramic plate straightener with digital temp screen.",
-    image: "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcT0tKlbV0CqRh2jz1Q9TaOy4KKpk2MprxH1FhPMUST2hrV0KeJJPFkycgKIEVuihRhLmoqRNxTjdYMtswxaSzYZ0B3kldrvsjerm9XNigjZpnxXB1BsnVoSJRqq7-V7mDvFRQ&usqp=CAc",
+    image: "/products/philips-ceramic-hair-straightener.webp",
     longDescription: "Achieve smooth, sleek hair easily. With silk ceramic plates that glide smoothly through your hair, this Philips straightener distributes heat evenly to prevent hair damage. Features a fast heat-up time of 30 seconds and a digital temperature display ranging up to 230°C."
   },
   {
@@ -292,7 +292,7 @@ export const ALL_PRODUCTS: Product[] = [
     rating: 5,
     reviews: 92,
     details: "Three-barrel curling iron for beachy waves.",
-    image: "https://m.media-amazon.com/images/I/41MwtpRuIcL._AC_UF1000,1000_QL80_.jpg",
+    image: "/products/philips-pro-hair-waver-curler.webp",
     longDescription: "Create beautiful mermaid-style beachy waves easily. The Philips Pro Hair Waver features a triple-barrel design coated in protective ceramic tourmaline. Fast heating with adjustable temperature settings makes styling safe for all hair structures and locks in waves that last all day."
   },
   {
@@ -304,7 +304,7 @@ export const ALL_PRODUCTS: Product[] = [
     rating: 4,
     reviews: 45,
     details: "On-the-go rechargeable styling plates.",
-    image: "https://m.media-amazon.com/images/I/613YQhPkFuL._AC_UF1000,1000_QL80_.jpg",
+    image: "/products/philips-cordless-hair-straightener.webp",
     longDescription: "Compact and powerful, this cordless rechargeable straightener is your ultimate travel styling companion. Offering up to 30 minutes of cordless styling with ceramic-coated plates, it heats up rapidly and includes a heat-resistant travel pouch for quick touch-ups anywhere."
   },
   {
@@ -316,7 +316,7 @@ export const ALL_PRODUCTS: Product[] = [
     rating: 5,
     reviews: 76,
     details: "Waterproof silicone facial massager.",
-    image: "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcSK3qbGl1JcsbB4vcHOWydYAnqI5iNLPJ5DWe8tpQBMxfUYKp3ccZLcIsfYs9qUIJCDYB8i50jPZcclcDi8qncxjgpeq_G86quXJnU6i0jGKQGpzsvpIjoDxco",
+    image: "/products/bloom-co-sonic-facial-cleansing-brush.webp",
     longDescription: "Take your facial cleansing routine to the next level. This waterproof sonic cleansing brush features ultra-hygienic silicone bristles that vibrate up to 8,000 times per minute. It deep cleanses pores, removes oil, dirt, and cosmetics residue, and leaves skin smooth and primed for skincare."
   },
 
@@ -330,7 +330,7 @@ export const ALL_PRODUCTS: Product[] = [
     rating: 5,
     reviews: 82,
     details: "Invigorating shower gel with sweet mandarin.",
-    image: "https://smytten-image.gumlet.io/discover_product/1764073133_DSTD0116BB13_1.jpg",
+    image: "/products/celestia-lab-citrus-infused-body-wash.webp",
     longDescription: "Energize your senses and refresh your body. This citrus-infused body wash blends Mandarin, Sweet Orange, and Lime essential oils with nourishing vitamin E. Dries gently without stripping moisture, leaving your skin soft, supple, and delicately scented with a bright citrus fragrance."
   },
   {
@@ -342,7 +342,7 @@ export const ALL_PRODUCTS: Product[] = [
     rating: 4,
     reviews: 154,
     details: "Rich cocoa butter lotion for dry skin repair.",
-    image: "https://www.boozyshop.nl/cdn/shop/files/dove-nourishing-secrets-restoring-coconut-body-lotion-250-ml-69520220684671.png",
+    image: "/products/dove-cocoa-butter-body-lotion.webp",
     longDescription: "Deeply nourish and repair dry, flaky skin. Dove Cocoa Butter Body Lotion combines rich cocoa butter and skin-natural nutrients to deliver 24-hour hydration. Absorbs quickly without a greasy residue, restoring skin elasticity and leaving a soft, natural radiance."
   },
   {
@@ -354,7 +354,7 @@ export const ALL_PRODUCTS: Product[] = [
     rating: 5,
     reviews: 210,
     details: "Deeply moisturizing whipped body butter.",
-    image: "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcQot-FAAlUtFJeJ-NIz8E1vVN0OPWXGvwHmKiUphy7jYxsaeXbGwp9XZ-ce0op7uH7frhpyi0gHMXWhzUtGbGzj3f4geqpquRUs1v_9t4prPrBSLBhjY_3P",
+    image: "/products/dove-vanilla-cream-body-butter.webp",
     longDescription: "Pamper your body with the whipped, luxurious texture of Vanilla Cream Body Butter. Formulated with Dove's unique moisturizing serum and sweet vanilla bean extracts, this rich butter melts into dry skin, leaving it incredibly soft and smelling delicious."
   },
   {
@@ -366,7 +366,7 @@ export const ALL_PRODUCTS: Product[] = [
     rating: 4,
     reviews: 64,
     details: "Relaxing muscle soak with pure eucalyptus oils.",
-    image: "https://www.thebodybar.ca/cdn/shop/products/Eucalyptus_Salts_800x800_365ad552-ecf5-4cd4-8ed7-3db2094b7615.jpg?v=1648666482",
+    image: "/products/celestia-lab-eucalyptus-bath-salts.webp",
     longDescription: "Soothe tired muscles and relax your mind. Formulated with pure Epsom salt and organic eucalyptus essential oils, these bath salts detoxify the skin, relieve muscular tension, and create a refreshing spa-like aromatherapy experience in your own tub."
   },
   {
@@ -378,7 +378,7 @@ export const ALL_PRODUCTS: Product[] = [
     rating: 5,
     reviews: 430,
     details: "Classic moisturizing shower gel for soft skin.",
-    image: "https://peronabeauty.com/wp-content/uploads/2024/02/Dove-Body-Wash-Deeply-Nourishing-750ml.jpg",
+    image: "/products/dove-deep-nourishing-body-wash.webp",
     longDescription: "The classic choice for soft, healthy skin. Dove Deeply Nourishing Body Wash features an ultra-mild cleansing formula loaded with NutriumMoisture technology. It delivers natural nutrients deep into the skin's surface layers, keeping skin hydrated and smooth after just one shower."
   },
 
@@ -392,7 +392,7 @@ export const ALL_PRODUCTS: Product[] = [
     rating: 5,
     reviews: 310,
     details: "Anti-acne clearing tea tree organic wash.",
-    image: "https://www.biotique.com/cdn/shop/files/tea-tree-skin-clearing-facial-wash-ap-1.png?v=1675250862",
+    image: "/products/biotique-tea-tree-face-wash.webp",
     longDescription: "Formulated with 100% natural and organic botanicals. Biotique Tea Tree Face Wash cleanses deep inside pores, removes excess oil, and targets acne-causing bacteria. Infused with tea tree oil, neem, and turmeric extracts to soothe redness and promote clear skin."
   },
   {
@@ -404,7 +404,7 @@ export const ALL_PRODUCTS: Product[] = [
     rating: 4,
     reviews: 142,
     details: "Cold-pressed pure organic coconut hair oil.",
-    image: "https://d1iuscsovtvj4y.cloudfront.net/products/Hair_Science_Coconut_Hair_Oil_01.jpg",
+    image: "/products/biotique-organic-coconut-hair-oil.webp",
     longDescription: "Nourish your scalp and strengthen hair follicles. This 100% natural, cold-pressed coconut oil is rich in vitamins and essential fatty acids. It penetrates deeply to restore dry, damaged hair shafts, prevent dandruff, and add a beautiful healthy shine to your locks."
   },
   {
@@ -416,7 +416,7 @@ export const ALL_PRODUCTS: Product[] = [
     rating: 4,
     reviews: 250,
     details: "Fresh neem extract cooling antibacterial gel.",
-    image: "https://m.media-amazon.com/images/I/51Odp5oERkL.jpg",
+    image: "/products/biotique-neem-purifying-face-wash.webp",
     longDescription: "Cleanse your skin daily with the antibacterial benefits of Neem. This soap-free, cooling gel formula clears impurities, controls oil secretion without drying, and prevents acne breakouts. Made with pure neem leaf extracts and chamomile for soft, calm skin."
   },
   {
@@ -428,7 +428,7 @@ export const ALL_PRODUCTS: Product[] = [
     rating: 5,
     reviews: 120,
     details: "Nourishing oil-rich natural organic soap.",
-    image: "https://m.media-amazon.com/images/I/615hJco5wML._AC_UF1000,1000_QL80_.jpg",
+    image: "/products/biotique-almond-honey-body-soap.webp",
     longDescription: "Indulge in a luxurious, nourishing bath. This organic bar soap is enriched with sweet almond oil, coconut oil, and wild honey. It hydrates dry skin, gently exfoliates dead skin cells, and wraps your body in a comforting, sweet natural fragrance."
   },
   {
@@ -440,7 +440,7 @@ export const ALL_PRODUCTS: Product[] = [
     rating: 4,
     reviews: 85,
     details: "Soothes skin irritations, hydrates instantly.",
-    image: "https://i5.walmartimages.com/asr/74058b4a-d242-473e-a811-9f4d430bbb9f.57bf71e1fff902e045c7e46c20de109f.jpeg?odnHeight=2000&odnWidth=2000&odnBg=FFFFFF",
+    image: "/products/biotique-aloe-vera-gel-mist.webp",
     longDescription: "Calm and rehydrate your face instantly. Packed with 100% pure aloe vera extract and cooling cucumber juice, this soothing face mist calms sunburns, reduces redness, and locks in moisture, leaving a fresh, dewy glow anytime throughout the day."
   },
 
@@ -454,7 +454,7 @@ export const ALL_PRODUCTS: Product[] = [
     rating: 5,
     reviews: 112,
     details: "Warm fragrance spray with bright citrus accents.",
-    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4l-HA9pxUkMf2UxUC2qkfewN3a8UIy3y4MA&s",
+    image: "/products/celestia-lab-sandalwood-mandarin-mist.webp",
     longDescription: "Wrap yourself in a sophisticated fragrance. The Sandalwood & Mandarin Mist blends the earthy, woody notes of warm Mysore Sandalwood with the bright, sparkling top notes of Sweet Mandarin and Citrus. Long-lasting, alluring, and perfect for both day and night wear."
   },
   {
@@ -466,7 +466,7 @@ export const ALL_PRODUCTS: Product[] = [
     rating: 5,
     reviews: 204,
     details: "Luxury vanilla amber perfume drops.",
-    image: "https://www.victoriassecret.com.au/dw/image/v2/BLPL_PRD/on/demandware.static/-/Sites-beauty-master-catalog/default/dw3c0c7a31/large/112283035118_OM_F.jpg?sw=1500&sh=1500&sm=fit",
+    image: "/products/victorias-secret-vanilla-amber-perfume.webp",
     longDescription: "A seductive, warm, and sweet fragrance. Victoria's Secret Vanilla Amber is a luxurious perfume featuring rich amber notes combined with creamy vanilla orchids and soft wood undertones. Delivers an elegant, intimate fragrance trail that lingers beautifully."
   },
   {
@@ -478,7 +478,7 @@ export const ALL_PRODUCTS: Product[] = [
     rating: 5,
     reviews: 150,
     details: "Classic velvet rose petals luxury perfume.",
-    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsotufwoaTFNu3PC_rVgEVGWU0P4kTjFJVBg&s",
+    image: "/products/wanderlust-rose-de-grasse-eau-de-parfum.webp",
     longDescription: "Capturing the essence of hand-picked roses from Grasse, France. This luxury fragrance layers velvet Bulgarian Rose petals with a heart of Turkish Rose and base notes of warm musk and cedarwood, creating a timeless, floral, and deeply romantic signature scent."
   },
   {
@@ -490,7 +490,7 @@ export const ALL_PRODUCTS: Product[] = [
     rating: 4,
     reviews: 88,
     details: "Fresh ocean air combined with citrus undertones.",
-    image: "https://fimgs.net/mdimg/perfume/o.134750.jpg",
+    image: "/products/celestia-lab-bergamot-sea-salt-cologne.webp",
     longDescription: "Escape to the coast with a refreshing scent. Bergamot & Sea Salt Cologne combines fresh, salty sea breeze accords with bright Italian bergamot, sage, and driftwood base notes. Clean, aquatic, and invigorating, it is the perfect daily fragrance."
   },
   {
@@ -502,7 +502,7 @@ export const ALL_PRODUCTS: Product[] = [
     rating: 5,
     reviews: 320,
     details: "Alluring jasmine and dark amber body spray.",
-    image: "https://cdn.store-assets.com/s/139218/i/9167588.jpeg?width=1024",
+    image: "/products/victorias-secret-midnight-jasmine-mist.webp",
     longDescription: "An alluring, sensual floral fragrance mist. Midnight Jasmine features rich jasmine blooms combined with sweet honeysuckle, white musk, and a warm base of dark amber. Spray it over your body for a delicate, long-lasting touch of evening luxury."
   },
 
@@ -512,11 +512,11 @@ export const ALL_PRODUCTS: Product[] = [
     name: "Rose Quartz Facial Roller",
     brand: "Bloom Co",
     category: "Accessories",
-    price: 22,
+    price: 1,
     rating: 4,
-    reviews: 88,
+    reviews: 23,
     details: "Authentic rose quartz massaging skin roller.",
-    image: "https://caresmith.com/cdn/shop/files/1_c9a62d30-88bf-4814-89b5-c12f2296f355.jpg?v=1690436441",
+    image: "/products/bloom-co-rose-quartz-facial-roller.webp",
     longDescription: "Made from 100% natural, hand-carved rose quartz stone. This dual-ended facial roller helps improve blood circulation, stimulate lymphatic drainage, reduce morning facial puffiness, and enhance the absorption of your favorite skincare serums and moisturizers."
   },
   {
@@ -528,7 +528,7 @@ export const ALL_PRODUCTS: Product[] = [
     rating: 5,
     reviews: 172,
     details: "Seamless blending cosmetics makeup sponge.",
-    image: "https://sdcdn.io/mc/mac_sku_MWL601_1x1_0.png?height=700px&width=700px",
+    image: "/products/mac-precision-blender-sponge.webp",
     longDescription: "Achieve a flawless foundation application. The M.A.C Precision Blender Sponge features a super-soft, latex-free foam structure that expands when wet. Its teardrop shape is perfect for sweeping across large areas and blending around delicate nose and eye creases."
   },
   {
@@ -540,7 +540,7 @@ export const ALL_PRODUCTS: Product[] = [
     rating: 5,
     reviews: 190,
     details: "Professional face and eye makeup brush kit.",
-    image: "https://m.media-amazon.com/images/I/61N057v2PBL._AC_UF894,1000_QL80_.jpg",
+    image: "/products/mac-makeup-brush-set-12-pcs.webp",
     longDescription: "Upgrade your cosmetics application with MAC's 12-piece Professional Brush Kit. Features premium synthetic fibers that mimic natural hair. The set includes foundation, powder, contour, eyeshadow, blending, and eyeliner brushes, all housed in a chic travel pouch."
   },
   {
@@ -552,7 +552,7 @@ export const ALL_PRODUCTS: Product[] = [
     rating: 4,
     reviews: 65,
     details: "Soft sleep mask to prevent friction and wrinkles.",
-    image: "https://bloomandbliss.com.co/cdn/shop/files/9.png?v=1731660433",
+    image: "/products/bloom-co-satin-sleep-eye-mask.webp",
     longDescription: "Enjoy uninterrupted, beauty-rest sleep. Made from premium quality, friction-free satin material, this sleep mask block out light completely. Unlike cotton, satin prevents skin friction, preserves hydration, and stops sleep wrinkles from forming around the eyes."
   },
   {
@@ -564,7 +564,7 @@ export const ALL_PRODUCTS: Product[] = [
     rating: 5,
     reviews: 215,
     details: "Facial contouring and lymphatic drainage tool.",
-    image: "https://m.media-amazon.com/images/I/61FHX6KC9EL.jpg",
+    image: "/products/bloom-co-jade-gua-sha-scraping-tool.webp",
     longDescription: "An ancient Chinese wellness tool crafted from 100% natural Jade stone. Used to perform Gua Sha facial massages, this tool contours jawlines, lifts cheekbones, relieves muscle tension, and promotes lymphatic drainage to flush toxins and reduce puffiness."
   },
 
@@ -578,7 +578,7 @@ export const ALL_PRODUCTS: Product[] = [
     rating: 5,
     reviews: 156,
     details: "Sheer tint oil infused with natural seed oils for high shine.",
-    image: "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcTq2lwLCiy376nJzNqAzEh1jyFLQtwvVPd5iOYjet4tEcpz5CqayeLpoXgVrntZyB54SbwpH4wDkt-FpLb0Xlsaxh7kUZDyDOFjNQWl09yNU465oo27eqAg0A",
+    image: "/products/celestia-lab-desert-rose-lip-oil.webp",
     longDescription: "Drench your lips in sheer, high-shine color. Infused with organic rosehip seed oil, jojoba seed oil, and Vitamin E, Desert Rose Lip Oil delivers the mirror-like shine of a lip gloss with the comfort and hydration of an intensive lip treatment. Non-sticky and deeply nourishing."
   },
   {
@@ -590,19 +590,19 @@ export const ALL_PRODUCTS: Product[] = [
     rating: 4,
     reviews: 43,
     details: "Shimmering loose pigment eyeshadow for a warm metallic finish.",
-    image: "https://images.ctfassets.net/wlke2cbybljx/6hNx7CdsjRo3pmHtIycAKZ/174d2d1e462ffc401526f55f81235766/16-10-24_EYE_PALETTE_ECOM_STILLS_PDP_DAY_1_HILLIER_Shot_8_AFTER_LIV_DIGITAL_LILAC_3736.jpg?w=800&h=800&q=80&fm=jpg",
+    image: "/products/celestia-lab-gilded-honey-eyeshadow.webp",
     longDescription: "A highly pigmented, loose powder eyeshadow that glides on smoothly to create a warm, metallic finish. Made with micro-fine pearls, Gilded Honey captures and reflects light, creating a sparkling, high-impact foil effect on your eyelids."
   },
   {
     id: 48,
-    name: "https://oceane.vtexassets.com/arquivos/ids/217002/AP2001393CO116F_blush_em_bastao_cintilante_coral_glow_blush_stick_flirt_oceane_edition_7g_1.jpg?v=638966469804630000",
+    name: "Coral glow blush stick",
     brand: "Celestia Lab",
     category: "Makeup",
     price: 32,
     rating: 5,
     reviews: 74,
     details: "Multi-use cream color stick for cheeks and lips with a dewy finish.",
-    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtSTFcg7eeewr4NwOu3eUiWgpKZga05-GAdTh0kM9kdw6dCbsFGhOP2-I&s=10",
+    image: "/products/celestia-lab-httpsoceanevtexassetscomarquivosids217002ap2001393co116f_blush_em_bastao_cintilante_coral_glow_blush_stick_flirt_oceane_edition_7g_1jpgv638966469804630000.webp",
     longDescription: "A versatile cream-to-powder stick that adds a healthy, sun-kissed flush of coral to cheeks, lips, and eyelids. Formulated with hydrating shea butter and coconut oil, it melts smoothly into the skin for a seamless, buildable dewy finish."
   },
   {
@@ -614,7 +614,7 @@ export const ALL_PRODUCTS: Product[] = [
     rating: 4,
     reviews: 89,
     details: "Clarifying face mask designed to restore clarity and even skin tones.",
-    image: "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcQdlBrU-Cltr9QPx5dgt8OgiebQsNbe0pWaaeemjtgj0QyISHwhuf3b_CYd7IQFyh4fRhg_RngpVZhrRIjTITUngQGk2FASUdVluijvMPRoKkcJnfUMNLHO1UsnuIgR3aoX&usqp=CAc",
+    image: "/products/celestia-lab-vitamin-c-brightening-mask.webp",
     longDescription: "Revitalize tired, dull skin. This nourishing mud mask is infused with active Vitamin C extracts, white kaolin clay, and orange blossom essential oils. It gently draws out deep pores impurities, brightens dark patches, and restores an even, radiant complexion."
   },
   {
@@ -626,7 +626,7 @@ export const ALL_PRODUCTS: Product[] = [
     rating: 5,
     reviews: 145,
     details: "Lightweight cream loaded with triple vitamin C and hydration lock.",
-    image: "/product.png"
+    image: "/products/dot-key-vitamin-c-glow-moisturizer.webp"
   },
   {
     id: 502,
@@ -637,7 +637,7 @@ export const ALL_PRODUCTS: Product[] = [
     rating: 5,
     reviews: 340,
     details: "Super stay vinyl ink liquid lipstick for 16hr wear.",
-    image: "/product.png"
+    image: "/products/maybelline-new-york-vinyl-ink-liquid-lipstick.webp"
   },
   {
     id: 503,
@@ -648,7 +648,7 @@ export const ALL_PRODUCTS: Product[] = [
     rating: 5,
     reviews: 412,
     details: "Weekly at-home hair repairing treatment.",
-    image: "/product.png"
+    image: "/products/olaplex-no-3-hair-perfector-mask.webp"
   },
   {
     id: 504,
@@ -659,7 +659,7 @@ export const ALL_PRODUCTS: Product[] = [
     rating: 4,
     reviews: 210,
     details: "Fresh neem extract cooling antibacterial gel.",
-    image: "/product.png"
+    image: "/products/biotique-neem-purifying-face-wash.webp"
   },
   {
     id: 505,
@@ -670,7 +670,7 @@ export const ALL_PRODUCTS: Product[] = [
     rating: 5,
     reviews: 198,
     details: "Anti-aging facial serum for radiance and skin barrier repair.",
-    image: "/product.png"
+    image: "/products/lancme-advanced-gnifique-serum.webp"
   },
   {
     id: 506,
@@ -681,7 +681,7 @@ export const ALL_PRODUCTS: Product[] = [
     rating: 5,
     reviews: 320,
     details: "24-hour wear liquid foundation with buildable coverage.",
-    image: "/product.png"
+    image: "/products/este-lauder-double-wear-foundation.webp"
   },
   {
     id: 507,
@@ -692,7 +692,7 @@ export const ALL_PRODUCTS: Product[] = [
     rating: 5,
     reviews: 540,
     details: "Non-foaming face wash with hyaluronic acid and ceramides.",
-    image: "/product.png"
+    image: "/products/cerave-hydrating-facial-cleanser.webp"
   },
   {
     id: 508,
@@ -703,7 +703,7 @@ export const ALL_PRODUCTS: Product[] = [
     rating: 4,
     reviews: 180,
     details: "Oil-free gel-cream moisturizer with aloe bio-ferment.",
-    image: "/product.png"
+    image: "/products/clinique-moisture-surge-100h-gel.webp"
   },
   {
     id: 509,
@@ -714,7 +714,7 @@ export const ALL_PRODUCTS: Product[] = [
     rating: 5,
     reviews: 460,
     details: "Iconic matte lipstick in vivid blue-red shade.",
-    image: "/product.png"
+    image: "/products/mac-cosmetics-matte-lipstick-ruby-woo.webp"
   },
   {
     id: 510,
@@ -725,7 +725,7 @@ export const ALL_PRODUCTS: Product[] = [
     rating: 5,
     reviews: 290,
     details: "Alluring body mist spray featuring red plum and freesia.",
-    image: "/product.png"
+    image: "/products/victorias-secret-pure-seduction-body-mist.webp"
   },
   {
     id: 511,
@@ -736,7 +736,7 @@ export const ALL_PRODUCTS: Product[] = [
     rating: 4,
     reviews: 175,
     details: "1.5% pure hyaluronic acid serum for intensive hydration.",
-    image: "/product.png"
+    image: "/products/loral-paris-hyaluronic-acid-face-serum.webp"
   },
   {
     id: 512,
@@ -747,7 +747,7 @@ export const ALL_PRODUCTS: Product[] = [
     rating: 5,
     reviews: 380,
     details: "Deep moisture body lotion with cocoa butter and serum.",
-    image: "/product.png"
+    image: "/products/nivea-cocoa-butter-body-lotion.webp"
   },
   {
     id: 513,
@@ -758,7 +758,7 @@ export const ALL_PRODUCTS: Product[] = [
     rating: 5,
     reviews: 610,
     details: "Hydrating face wash for dry to normal sensitive skin.",
-    image: "/product.png"
+    image: "/products/cetaphil-gentle-skin-cleanser-gel.webp"
   },
   {
     id: 514,
@@ -769,7 +769,7 @@ export const ALL_PRODUCTS: Product[] = [
     rating: 5,
     reviews: 890,
     details: "High-strength vitamin and mineral blemish formula.",
-    image: "/product.png"
+    image: "/products/the-ordinary-niacinamide-10-zinc-1.webp"
   },
   {
     id: 515,
@@ -780,7 +780,7 @@ export const ALL_PRODUCTS: Product[] = [
     rating: 5,
     reviews: 420,
     details: "Lightweight setting spray for a matte, shine-free finish.",
-    image: "/product.png"
+    image: "/products/nyx-professional-makeup-matte-finish-setting-spray.webp"
   },
   {
     id: 516,
@@ -791,7 +791,7 @@ export const ALL_PRODUCTS: Product[] = [
     rating: 5,
     reviews: 215,
     details: "Weightless transfer-proof liquid matte lipstick.",
-    image: "/product.png"
+    image: "/products/huda-beauty-liquid-matte-lipstick-lip.webp"
   },
   {
     id: 517,
@@ -802,7 +802,7 @@ export const ALL_PRODUCTS: Product[] = [
     rating: 5,
     reviews: 680,
     details: "Overnight lip mask that delivers intensive moisture.",
-    image: "/product.png"
+    image: "/products/laneige-lip-sleeping-recovery-mask.webp"
   },
   {
     id: 518,
@@ -813,7 +813,7 @@ export const ALL_PRODUCTS: Product[] = [
     rating: 5,
     reviews: 340,
     details: "Moisture-barrier strengthening serum with green tea seed oil.",
-    image: "/product.png"
+    image: "/products/innisfree-green-tea-seed-hydration-serum.webp"
   },
   {
     id: 519,
@@ -824,7 +824,7 @@ export const ALL_PRODUCTS: Product[] = [
     rating: 4,
     reviews: 115,
     details: "Pure steam-distilled rose water skin toner and mist.",
-    image: "/product.png"
+    image: "/products/kama-ayurveda-pure-himalayan-rose-water.webp"
   },
   {
     id: 520,
@@ -835,7 +835,7 @@ export const ALL_PRODUCTS: Product[] = [
     rating: 4,
     reviews: 195,
     details: "Soap-free foaming face wash with green tea extracts.",
-    image: "/product.png"
+    image: "/products/plum-green-tea-pore-cleanser-wash.webp"
   },
   {
     id: 521,
@@ -846,7 +846,7 @@ export const ALL_PRODUCTS: Product[] = [
     rating: 5,
     reviews: 92,
     details: "Handmade silk soap infused with natural sugar cane juice.",
-    image: "/product.png"
+    image: "/products/forest-essentials-luxury-silk-sugar-soap.webp"
   },
   {
     id: 522,
@@ -857,7 +857,7 @@ export const ALL_PRODUCTS: Product[] = [
     rating: 5,
     reviews: 720,
     details: "Hyaluronic acid gel moisturizer for dry skin.",
-    image: "/product.png"
+    image: "/products/neutrogena-hydro-boost-hydrating-water-gel.webp"
   },
   {
     id: 523,
@@ -868,7 +868,7 @@ export const ALL_PRODUCTS: Product[] = [
     rating: 4,
     reviews: 240,
     details: "High-pigment matte lipstick crayon with silky texture.",
-    image: "/product.png"
+    image: "/products/sugar-cosmetics-matte-as-hell-crayon-lip.webp"
   },
   {
     id: 524,
@@ -879,7 +879,7 @@ export const ALL_PRODUCTS: Product[] = [
     rating: 4,
     reviews: 155,
     details: "2% Salicylic acid skin clarifying serum.",
-    image: "/product.png"
+    image: "/products/pilgrim-salicylic-acid-face-serum.webp"
   },
   {
     id: 525,
@@ -890,7 +890,7 @@ export const ALL_PRODUCTS: Product[] = [
     rating: 4,
     reviews: 310,
     details: "Onion hair shampoo with plant keratin for hair strength.",
-    image: "/product.png"
+    image: "/products/mamaearth-onion-hair-fall-control-shampoo.webp"
   },
   {
     id: 526,
@@ -901,7 +901,7 @@ export const ALL_PRODUCTS: Product[] = [
     rating: 5,
     reviews: 185,
     details: "2-in-1 intense black eyeliner and smooth kajal pencil.",
-    image: "/product.png"
+    image: "/products/faces-canada-magneteyes-eyeliner-kajal.webp"
   },
   {
     id: 527,
@@ -912,7 +912,7 @@ export const ALL_PRODUCTS: Product[] = [
     rating: 4,
     reviews: 140,
     details: "Moisturizing lipstick with velvet matte rich color.",
-    image: "/product.png"
+    image: "/products/colorbar-velvet-matte-moisture-lipstick.webp"
   },
   {
     id: 528,
@@ -923,6 +923,6 @@ export const ALL_PRODUCTS: Product[] = [
     rating: 5,
     reviews: 295,
     details: "High-impact color lipstick with moisturizing shine.",
-    image: "/product.png"
+    image: "https://revlon.co.in/cdn/shop/files/8902656124616_1_1080x.jpg?v=1725258820"
   }
 ];
